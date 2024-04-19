@@ -4,7 +4,7 @@ body {
   color: #444444;
   margin: 0;
   padding: 0;
-  background: url('https://img.freepik.com/fotos-premium/fondo-blanco-abstracto-cuadrados_476363-1050.jpg?w=740') no-repeat;
+  background: url('../img/fondo.jpg') no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -133,5 +133,81 @@ h6 {
   #footer .credits {
     text-align: center;
     float: none;
+  }
+}
+
+/* Estilos para la barra superior */
+.top-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 50px;
+  background-color: #073763;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 999; /* Asegura que la barra esté por encima de otros elementos */
+}
+
+/* Estilos para el contenedor de texto animado */
+.scrolling-text-container {
+  position: absolute;
+  white-space: nowrap; /* Evita que el texto se desborde a la siguiente línea */
+  left: 0;
+  right: 0;
+  animation: scrollText 15s linear infinite; /* Animación para desplazar el texto */
+}
+
+/* Animación para desplazar el texto de izquierda a derecha */
+@keyframes scrollText {
+  0% {
+    transform: translateX(100vw); /* Comienza fuera del contenedor a la derecha */
+  }
+  100% {
+    transform: translateX(-100%); /* Termina completamente fuera del contenedor a la izquierda */
+  }
+}
+
+/* Estilos para el banner flotante */
+.floating-banner {
+  position: fixed;
+  background-color: #ffffff;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  max-width: 300px; /* Ancho máximo del banner */
+  z-index: 1000; /* Asegura que el banner esté por encima de otros elementos */
+}
+
+.floating-banner img {
+  width: 80px; /* Tamaño de la imagen */
+  height: auto; /* Altura automática para mantener la proporción */
+  margin-right: 10px; /* Espacio a la derecha de la imagen */
+}
+
+.floating-banner p {
+  margin: 0; /* Elimina el margen del párrafo interno */
+  font-size: 14px; /* Tamaño del texto */
+  color: #333333; /* Color del texto */
+  line-height: 1.4; /* Altura de línea para una mejor legibilidad */
+}
+
+/* Estilos responsivos para mostrar el banner en la parte superior en dispositivos pequeños */
+@media (max-width: 767px) {
+  .floating-banner {
+    bottom: 20px; /* Posición en la parte inferior */
+    right: 20px; /* Alineación a la derecha */
+  }
+}
+
+/* Estilos para mostrar el banner en la parte inferior en dispositivos más grandes */
+@media (min-width: 768px) {
+  .floating-banner {
+    bottom: 20px; /* Posición en la parte inferior */
+    right: 20px; /* Alineación a la derecha */
   }
 }
