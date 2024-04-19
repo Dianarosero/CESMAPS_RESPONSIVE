@@ -21,7 +21,7 @@
   <link href="../front/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../front/vendor/simple-datatables/style.css" rel="stylesheet">
   <!-- Template Main CSS File -->
-  <link href="../front/css/style.css" rel="stylesheet">
+  <link href="../front/css/style_buscar.css" rel="stylesheet">
   <!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
