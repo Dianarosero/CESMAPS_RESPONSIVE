@@ -1,4 +1,3 @@
-
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -61,7 +60,8 @@ h6 {
   padding: 10px 28px 11px 28px;
   border-radius: 50px;
   transition: 0.5s;
-  margin: 10px 15px 0 0; /* Añade margen derecho de 15px entre los botones */
+  margin: 10px 15px 0 0;
+  /* Añade margen derecho de 15px entre los botones */
   color: #fff;
   background: #999;
 }
@@ -148,25 +148,31 @@ h6 {
   display: flex;
   align-items: center;
   overflow: hidden;
-  z-index: 999; /* Asegura que la barra esté por encima de otros elementos */
+  z-index: 999;
+  /* Asegura que la barra esté por encima de otros elementos */
 }
 
 /* Estilos para el contenedor de texto animado */
 .scrolling-text-container {
   position: absolute;
-  white-space: nowrap; /* Evita que el texto se desborde a la siguiente línea */
+  white-space: nowrap;
+  /* Evita que el texto se desborde a la siguiente línea */
   left: 0;
   right: 0;
-  animation: scrollText 15s linear infinite; /* Animación para desplazar el texto */
+  animation: scrollText 15s linear infinite;
+  /* Animación para desplazar el texto */
 }
 
 /* Animación para desplazar el texto de izquierda a derecha */
 @keyframes scrollText {
   0% {
-    transform: translateX(100vw); /* Comienza fuera del contenedor a la derecha */
+    transform: translateX(100vw);
+    /* Comienza fuera del contenedor a la derecha */
   }
+
   100% {
-    transform: translateX(-100%); /* Termina completamente fuera del contenedor a la izquierda */
+    transform: translateX(-100%);
+    /* Termina completamente fuera del contenedor a la izquierda */
   }
 }
 
@@ -179,35 +185,111 @@ h6 {
   border-radius: 8px;
   display: flex;
   align-items: center;
-  max-width: 300px; /* Ancho máximo del banner */
-  z-index: 1000; /* Asegura que el banner esté por encima de otros elementos */
+  max-width: 300px;
+  /* Ancho máximo del banner */
+  z-index: 1000;
+  /* Asegura que el banner esté por encima de otros elementos */
 }
 
 .floating-banner img {
-  width: 80px; /* Tamaño de la imagen */
-  height: auto; /* Altura automática para mantener la proporción */
-  margin-right: 10px; /* Espacio a la derecha de la imagen */
+  width: 80px;
+  /* Tamaño de la imagen */
+  height: auto;
+  /* Altura automática para mantener la proporción */
+  margin-right: 10px;
+  /* Espacio a la derecha de la imagen */
 }
 
 .floating-banner p {
-  margin: 0; /* Elimina el margen del párrafo interno */
-  font-size: 14px; /* Tamaño del texto */
-  color: #333333; /* Color del texto */
-  line-height: 1.4; /* Altura de línea para una mejor legibilidad */
+  margin: 0;
+  /* Elimina el margen del párrafo interno */
+  font-size: 14px;
+  /* Tamaño del texto */
+  color: #333333;
+  /* Color del texto */
+  line-height: 1.4;
+  /* Altura de línea para una mejor legibilidad */
 }
 
-/* Estilos responsivos para mostrar el banner en la parte superior en dispositivos pequeños */
+/* Estilos para dispositivos pequeños (móviles) */
 @media (max-width: 767px) {
   .floating-banner {
-    bottom: 20px; /* Posición en la parte inferior */
-    right: 20px; /* Alineación a la derecha */
+    position: fixed;
+    bottom: 20px;
+    /* Espacio desde la parte inferior */
+    left: 50%;
+    /* Centra horizontalmente el banner */
+    transform: translateX(-50%);
+    /* Centra el banner horizontalmente */
+    z-index: 1000;
+    /* Asegura que esté por encima de otros elementos */
+    background-color: #ffffff;
+    /* Color de fondo del banner */
+    padding: 10px;
+    /* Espaciado interno del banner */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    text-align: center;
+    /* Centra el contenido */
+    width: 90%;
+    /* Ancho del banner */
+    max-width: 300px;
+    /* Ancho máximo del banner */
+  }
+
+  /* Calcula la distancia desde el fondo considerando la altura del footer */
+  @media (max-width: 767px) {
+
+    /* Calcula la altura del footer */
+    .floating-banner {
+      /* Asegura que no tape el footer */
+      bottom: calc(20px + 60px);
+      /* Espacio desde la parte inferior + altura estimada del footer */
+    }
   }
 }
 
 /* Estilos para mostrar el banner en la parte inferior en dispositivos más grandes */
 @media (min-width: 768px) {
   .floating-banner {
-    bottom: 20px; /* Posición en la parte inferior */
-    right: 20px; /* Alineación a la derecha */
+    bottom: 20px;
+    /* Posición en la parte inferior */
+    right: 20px;
+    /* Alineación a la derecha */
   }
+}
+
+.banner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.banner {
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.banner button {
+  margin-top: 10px;
+  padding: 8px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.banner button:hover {
+  background-color: #0056b3;
 }
