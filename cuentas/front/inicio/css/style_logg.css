@@ -279,3 +279,34 @@ h6 {
 .btn-primary:active {
   transform: scale(1.05);
 }
+
+
+.floating-banner {
+  position: fixed;
+  bottom: 20px; /* Distancia desde la parte inferior */
+  right: 20px; /* Distancia desde la derecha */
+  z-index: 1000;
+  background-color: #fff;
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.floating-banner img {
+  max-width: 100%;
+  width: 150px; /* Tamaño máximo para dispositivos grandes */
+  height: auto;
+}
+
+@media (max-width: 768px) {
+  .floating-banner img {
+    width: 75px; /* Tamaño para dispositivos pequeños */
+  }
+}
+
+.floating-banner p {
+  margin: 5px 0 0;
+  font-size: 14px;
+}
+
+

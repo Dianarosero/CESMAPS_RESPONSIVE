@@ -123,6 +123,13 @@
 
   <!-- Template Main JS File -->
   <script src="../front/inicio/js/main.js"></script>
+  <script src="../front/inicio/js/min-max.js"></script>
+
+  <div class="floating-banner">
+  <img src="../front/inicio/img/flavicon-01.png" alt="Banner Image">
+  <p>Texto corto aquí</p>
+</div>
+
 
 </body>
 
