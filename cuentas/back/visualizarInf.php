@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Visualizar</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="../front/visualizar/img/flavicon-01.png" rel="icon">
+  <link href="../front/visualizar/img/flavicon-01.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="../front/visualizar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../front/visualizar/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../front/visualizar/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../front/visualizar/vendor/quill/quill.snow.css" rel="stylesheet">
+  <link href="../front/visualizar/vendor/quill/quill.bubble.css" rel="stylesheet">
+  <link href="../front/visualizar/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../front/visualizar/vendor/simple-datatables/style_visualizar.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="../front/visualizar/css/style_visualizar.css" rel="stylesheet">
+  <style>
+  .btn-back,
+  .logout-button {
+    background: none; /* Quita cualquier fondo del botón */
+    border: none; /* Quita cualquier borde del botón */
+    padding: 0; /* Quita cualquier relleno del botón */
+  }
+
+  /* Estilo para las imágenes en los botones */
+  .btn-back img,
+  .logout-button img {
+    display: block; /* Asegura que la imagen sea un bloque para controlar su tamaño */
+    width: 100px; /* Establece el ancho de la imagen */
+    height: auto; /* Permite que la altura se ajuste automáticamente según el ancho */
+  }
+  </style>
+</head>
+
+<body>
+  <a href="javascript:history.go(-1)" class="btn-back">
+    <img src="../front/visualizar/img/volver-01-01-01.png" alt="Volver">
+  </a>
+
+  
+  <main>
+    <div class="container">
+
+      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 d-flex flex-column align-items-center justify-content-center">
+  
+              <div class="d-flex justify-content-center py-4 align-items-center">
+                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                  <img src="../front/visualizar/img/flavicon-01.png" alt="" style="margin-right: 10px;"> <!-- Añade un margen a la derecha del icono -->
+                  <span>CESMAPS</span>
+                </a>
+              </div><!-- End Logo -->
+
+              <div class="card mb-3">
+
+                <div class="card-body">     
+                      <div class="pt-4 pb-2">
+                        <h5 class="card-title text-center pb-0 fs-4">Visualizar información</h5>
+                        <p class="text-center small">Visualizar datos personales de tu cuenta</p>
+                      </div>
+
+                  <!-- Formulario de Información -->
+                  <form class="needs-validation" action= "editarD.php"novalidate>
+                    <!-- Primera fila -->
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="nombres" class="form-label">Nombre</label>
+                        <input type="text" name="nombres" class="form-control" id="nombres" value="<?= $name; ?>" required disabled>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="cboTipoid" class="form-label">Tipo de Identificación</label>
+                        <input type="text" name="cboTipoid" class="form-control" id="cboTipoid" value="<?= $tID; ?>" required disabled>
+                      </div>
+                    </div>
+                    <!-- Segunda fila -->
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="apellidos" class="form-label">Apellidos</label>
+                        <input type="text" name="apellidos" class="form-control" id="apellidos" value="<?= $apellido; ?>" required disabled>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="num_identificacion" class="form-label">Número de Identificación</label>
+                        <input type="text" name="num_identificacion" class="form-control" id="num_identificacion" value="<?= $n_id; ?>" required disabled>
+                      </div>
+                    </div>
+                    <!-- Tercera fila -->
+                    <div class="row mb-3">
+                      <div class="col-md-6">
+                        <label for="cboTipoUsuarios" class="form-label">Tipo de Usuario</label>
+                        <input type="text" name="cboTipoUsuarios" class="form-control" id="cboTipoUsuarios" value="<?= $tUsuario; ?>" required disabled>
+                      </div>
+                      <div class="col-md-6">
+                        <label for="num_telefono" class="form-label">Número de Teléfono</label>
+                        <input type="text" name="num_telefono" class="form-control" id="num_telefono" value="<?= $n_telefono; ?>" required disabled>
+                      </div>
+                    </div>
+                    <!-- Cuarta fila -->
+                    <div class="row mb-3">
+                      <div class="col-md-12">
+                        <label for="email" class="form-label">Correo Electrónico</label>
+                        <input type="email" name="email" class="form-control" id="email" value="<?= $email; ?>" required disabled>
+                      </div>
+                    </div>
+                    <!-- Botón de Edición -->
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button class="btn btn-primary w-100"  type="submit" name="register">Editar información</button>
+                      </div>
+                    </div>
+                  </form>
+
+                </div>
+              </div>
+
+              <div class="credits-container" style="text-align: center;">
+                Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+    
+  </main><!-- End #main -->
+      <a href="cerrar_sesion.php" class="logout-button">
+        <img src="../front/visualizar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
+      </a>
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="../front/visualizar/vendor/apexcharts/apexcharts.min.js"></script>
+  <script src="../front/visualizar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../front/visualizar/vendor/chart.js/chart.umd.js"></script>
+  <script src="../front/visualizar/vendor/echarts/echarts.min.js"></script>
+  <script src="../front/visualizar/vendor/quill/quill.min.js"></script>
+  <script src="../front/visualizar/vendor/simple-datatables/simple-datatables.js"></script>
+  <script src="../front/visualizar/vendor/tinymce/tinymce.min.js"></script>
+  <script src="../front/visualizar/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="../front/visualizar/js/main.js"></script>
+
+</body>
+
+</html>
