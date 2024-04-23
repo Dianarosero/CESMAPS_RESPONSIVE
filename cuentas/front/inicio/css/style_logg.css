@@ -281,32 +281,36 @@ h6 {
 }
 
 
+/* Estilos base para el floating banner */
 .floating-banner {
   position: fixed;
-  bottom: 20px; /* Distancia desde la parte inferior */
-  right: 20px; /* Distancia desde la derecha */
-  z-index: 1000;
-  background-color: #fff;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  border-radius: 5px;
+  bottom: 20px;
+  right: 20px;
+  width: 300px; /* Ancho por defecto para pantallas grandes */
+  max-width: 90%; /* Ancho máximo del banner por defecto */
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.floating-banner img {
-  max-width: 100%;
-  width: 150px; /* Tamaño máximo para dispositivos grandes */
-  height: auto;
+.banner-content img {
+  max-width: 100%; /* La imagen no superará el ancho del contenedor */
+  height: auto; /* La altura se ajusta automáticamente */
 }
 
+
+/* Media query para pantallas pequeñas (hasta 768px de ancho) */
 @media (max-width: 768px) {
-  .floating-banner img {
-    width: 75px; /* Tamaño para dispositivos pequeños */
+  .floating-banner {
+      width: 240px; /* Ancho máximo de 240px en pantallas pequeñas */
+      max-width: 90%; /* Mantener máximo del banner en proporción al tamaño de la pantalla */
   }
 }
 
-.floating-banner p {
-  margin: 5px 0 0;
-  font-size: 14px;
+/* Media query para pantallas grandes (más de 768px de ancho) */
+@media (min-width: 769px) {
+  .floating-banner {
+      max-width: 400px; /* Ancho máximo de 400px en pantallas grandes */
+  }
 }
-
 

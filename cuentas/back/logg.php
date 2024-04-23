@@ -125,11 +125,13 @@
   <script src="../front/inicio/js/main.js"></script>
   <script src="../front/inicio/js/min-max.js"></script>
 
-  <div class="floating-banner">
-  <img src="../front/inicio/img/flavicon-01.png" alt="Banner Image">
-  <p>Texto corto aquí</p>
-</div>
 
+  <div class="floating-banner" id="floatingBanner">
+    <button id="toggleButton" onclick="toggleBanner()">Mostrar / Ocultar</button>
+    <div class="banner-content">
+    <img src="../front/inicio/img/flavicon-01.png" alt="">
+    </div>
+</div>
 
 </body>
 
