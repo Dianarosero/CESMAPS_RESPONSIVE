@@ -8,24 +8,24 @@
 
 
   <!-- Favicons -->
-  <link href="../front/img/flavicon-01.png" rel="icon">
-  <link href="../front/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../front/listar/img/flavicon-01.png" rel="icon">
+  <link href="../front/listar/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../front/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../front/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../front/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../front/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../front/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../front/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../front/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../front/listar/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../front/listar/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../front/listar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../front/listar/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../front/listar/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../front/listar/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../front/listar/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../front/listar/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../front/css/style_listarI.css" rel="stylesheet">
+  <link href="../front/listar/css/style_listarI.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Anyar
@@ -56,7 +56,7 @@
 
       <h1 class="logo"><a href="listar.php">CESMAPS</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href=listar.php" class="logo"><img src="front/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href=listar.php" class="logo"><img src="front/listar/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav id="navbar" class="navbar">
         <ul>
@@ -96,7 +96,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="ins1.php">San Francisco
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\San-Francisco.jpg" style="max-width: 100%;">
+              <img src="../front\listar/img\San-Francisco.jpg" style="max-width: 100%;">
             </div>
           </div>
 
@@ -104,7 +104,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="rutas\instalacion\back\ins2.php">Sede B</B>
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\Sede B.jpeg" style="max-width: 100%;">
+              <img src="../front\listar/img\Sede B.jpeg" style="max-width: 100%;">
             </div>
           </div>
 
@@ -112,7 +112,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="rutas\instalacion\back\ins3.php">Holanda
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\Holanda.jpeg" style="max-width: 100%;">
+              <img src="../front\listar/img\Holanda.jpeg" style="max-width: 100%;">
             </div>
           </div>
           
@@ -120,7 +120,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="rutas\instalacion\back\ins4.php">Sede Administrativa
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\Sede Administrativa.jpeg" style="max-width: 100%;">
+              <img src="../front\listar/img\Sede Administrativa.jpeg" style="max-width: 100%;">
             </div>
           </div>
 
@@ -136,7 +136,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="rutas\instalacion\back\ins5.php">Italia
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\Italia.jpeg" style="max-width: 100%;">
+              <img src="../front\listar/img\Italia.jpeg" style="max-width: 100%;">
             </div>
           </div>
 
@@ -144,7 +144,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="rutas\instalacion\back\ins6.php">Sede C
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\Sede C.jpeg" style="max-width: 100%;">
+              <img src="../front\listar/img\Sede C.jpeg" style="max-width: 100%;">
             </div>
           </div>
 
@@ -152,7 +152,7 @@
             <div class="icon-box">
               <h4 class="title"><a href="rutas\instalacion\back\ins7.php">Asociacion Maria Goretti
               <h4 class="title"><a href=""></a></h4>
-              <img src="../front\img\Asociacion Maria Goretti.jpeg" style="max-width: 100%;">
+              <img src="../front\listar/img\Asociacion Maria Goretti.jpeg" style="max-width: 100%;">
             </div>
           </div>
 
@@ -173,15 +173,15 @@
   </footer><!-- End  Footer -->
 
   <!-- Vendor JS Files -->
-  <script src="../front/vendor/aos/aos.js"></script>
-  <script src="../front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../front/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../front/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../front/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../front/vendor/php-email-form/validate.js"></script>
+  <script src="../front/listar/vendor/aos/aos.js"></script>
+  <script src="../front/listar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../front/listar/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../front/listar/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../front/listar/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../front/listar/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../front/js/main.js"></script>
+  <script src="../front/listar/js/main.js"></script>
 
 </body>
 

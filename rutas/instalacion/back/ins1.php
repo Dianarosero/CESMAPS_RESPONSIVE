@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-  <link href="../front/img/flavicon-01.png" rel="icon">
+  <link href="../front/listar/img/flavicon-01.png" rel="icon">
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <title>San Francisco</title>
-  <link href="../front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../front/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../front/css/style_listarI.css" rel="stylesheet">
+  <link href="../front/listar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../front/listar/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../front/listar/css/style_listarI.css" rel="stylesheet">
 </head>
 
 <body>
@@ -49,7 +49,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <img src="../front\img\San-Francisco.jpg" class="img-fluid" alt="San Francisco" style="margin-top: 50px;">
+            <img src="../front\listar/img\San-Francisco.jpg" class="img-fluid" alt="San Francisco" style="margin-top: 50px;">
           </div>
         </div>
         <div class="row justify-content-center mt-4">
@@ -74,15 +74,15 @@
   </footer><!-- End  Footer -->
 
   <!-- Vendor JS Files -->
-  <script src="../front/vendor/aos/aos.js"></script>
-  <script src="../front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../front/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../front/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../front/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../front/vendor/php-email-form/validate.js"></script>
+  <script src="../front/listar/vendor/aos/aos.js"></script>
+  <script src="../front/listar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../front/listar/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../front/listar/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../front/listar/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../front/listar/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../front/js/main.js"></script>
+  <script src="../front/listar/js/main.js"></script>
 
 </body>
 
