@@ -12,19 +12,26 @@
 </head>
 
 <body>
-
   <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center">
+  <header id="header" class="fixed-top d-flex align-items-center ">
     <div class="container d-flex align-items-center justify-content-between">
 
-      <h1 class="logo"><a href="listar.php">CESMAPS</a></h1>
+    <nav class="navbar">
+      <div class="container-fluid">
+      <a href="listar.php" class="logo"><img src="../front/listar/img/volver-01-01-01.png" alt="" class="img-fluid"></a>
+      <ul class="navbar-nav">
+      <li class="nav-item"><a class="nav-link scrollto" href="#contact"></a></li>
+      <!-- Agrega más elementos de la barra de navegación aquí si es necesario -->
+      </ul>
+      </div>
+    </nav>
 
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="listar.php">Volver</a></li>
-        </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav><!-- .navbar -->
+    <nav id="navbar" class="navbar">
+      <ul>
+        <!-- Quita el punto alrededor de la imagen de cerrar sesión -->
+        <li><a href="listar.php" class="logo"><img src="../front/listar/img/cerrar_sesion-01.png" alt="" class="img-fluid" style="list-style-type: none;"></a></li>
+      </ul>
+    </nav>
 
     </div>
   </header><!-- End Header -->
