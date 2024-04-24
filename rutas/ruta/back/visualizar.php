@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="../front/img/favicon.png" rel="icon">
-  <link href="../front/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../front/recorrido/img/favicon.png" rel="icon">
+  <link href="../front/recorrido/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -19,15 +19,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../front/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../front/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../front/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="../front/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../front/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../front/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../front/recorrido/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../front/recorrido/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../front/recorrido/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="../front/recorrido/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../front/recorrido/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../front/recorrido/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../front/css/style_recorrido.css" rel="stylesheet">
+  <link href="../front/recorrido/css/style_recorrido.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: UpConstruction
@@ -77,7 +77,7 @@
 
     <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
-      <div class="carousel-item active" style="background-image: url(../front/img/index.png)"></div>
+      <div class="carousel-item active" style="background-image: url(../front/recorrido/img/index.png)"></div>
 
     </div>
 
@@ -90,7 +90,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <img src="../front\img\Castellana - Goretti-01.png" class="img-fluid" alt="San Francisco" style="margin-top: 50px;">
+            <img src="../front\recorrido/img\Castellana - Goretti-01.png" class="img-fluid" alt="Ruta1" style="margin-top: 50px;">
           </div>
         </div>
         <div class="row justify-content-center mt-4">
@@ -120,7 +120,7 @@
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
-                  <img src="../front/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                  <img src="../front/recorrido/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
                   <h3>Saul Goodman</h3>
                   <h4>Ceo &amp; Founder</h4>
                   <div class="stars">
@@ -138,7 +138,7 @@
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
-                  <img src="../front/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                  <img src="../front/recorrido/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
                   <h3>Sara Wilsson</h3>
                   <h4>Designer</h4>
                   <div class="stars">
@@ -172,16 +172,16 @@
   <div id="preloader"></div>
 
   <!-- Vendor JS Files -->
-  <script src="../front/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../front/vendor/aos/aos.js"></script>
-  <script src="../front/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../front/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../front/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../front/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="../front/vendor/php-email-form/validate.js"></script>
+  <script src="../front/recorrido/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../front/recorrido/vendor/aos/aos.js"></script>
+  <script src="../front/recorrido/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../front/recorrido/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../front/recorrido/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../front/recorrido/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="../front/recorrido/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../front/js/main.js"></script>
+  <script src="../front/recorrido/js/main.js"></script>
 
 </body>
 
