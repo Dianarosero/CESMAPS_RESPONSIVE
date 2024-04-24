@@ -20,10 +20,9 @@ if ($result_check && $result_check->num_rows > 0) {
 } 
 
 if ($titulo_existente) {
-    echo "<script>
-    alert('El título de la publicación ya existe. Por favor, elija otro título.');
-    window.location.href='publicar.php';
-    </script>";
+    session_start();
+    $_SESSION['mensaje'] = 'El título de la publicación ya existe. Por favor, elija otro título.';
+    header('Location: publicar.php');
     exit;
 }
 
@@ -36,8 +35,9 @@ if ($result_categoria && $result_categoria->num_rows > 0) {
     $row = $result_categoria->fetch_assoc();
     $categoria_id = $row['id'];
 } else {
-    echo "Error: La categoría seleccionada no es válida";
-    $conex->close();
+    session_start();
+    $_SESSION['mensaje'] = 'Error: La categoría seleccionada no es válida';
+    header('Location: publicar.php');
     exit;
 }
 
@@ -46,19 +46,22 @@ $nombre_archivo = $_FILES['archivo']['name'];
 $archivo_temporal = $_FILES['archivo']['tmp_name'];
 $ruta_archivo = "Publicaciones/" . $nombre_archivo;
 
-move_uploaded_file($archivo_temporal, $ruta_archivo); // Agregar punto y coma aquí
+move_uploaded_file($archivo_temporal, $ruta_archivo);
 
 // Insertar datos en la tabla 'publicaciones'
 $sql = "INSERT INTO publicaciones (titulo, autor, contacto, descripcion, archivo, estado, id_categoria)
         VALUES ('$titulo', '$autor', '$contacto', '$descripcion', '$ruta_archivo', '$estado', '$categoria_id')";
 
 if ($conex->query($sql) === TRUE) {
-    echo "<script>
-    alert('Publicación creada exitosamente');
-    window.location.href='publicar.php';
-    </script>";
+    session_start();
+    $_SESSION['mensaje'] = 'Publicación creada exitosamente';
+    header('Location: publicar.php');
+    exit;
 } else {
-    echo "Error al crear la publicación: " . $conex->error;
+    session_start();
+    $_SESSION['mensaje'] = 'Error al crear la publicación: ' . $conex->error;
+    header('Location: publicar.php');
+    exit;
 }
 
 // Cerrar conexión
