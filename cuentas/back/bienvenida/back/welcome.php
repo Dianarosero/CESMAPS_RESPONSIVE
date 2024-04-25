@@ -81,8 +81,8 @@
                         Crear&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../instalaciones/back/crear_instalacion.php">Instalación</a></li>
-                        <li><a class="dropdown-item" href="../../rutas/back/des_punto.php">Punto</a></li>
+                        <li><a class="dropdown-item" href="../../../../rutas/instalacion/back/crear_instalacion.php">Instalación</a></li>
+                        <li><a class="dropdown-item" href="../../../../rutas/punto/back/des_punto.php">Punto</a></li>
                         <li><a class="dropdown-item" href="../../rutas/back/crear.php">Ruta</a></li>
                       </ul>
                     </div> 
@@ -92,7 +92,7 @@
                         Editar&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                       </button>
                       <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../instalaciones/back/editar_instalacion.php">Instalación</a></li>
+                        <li><a class="dropdown-item" href="../../../../rutas/instalacion/back/editar_instalacion.php">Instalación</a></li>
                         <li><a class="dropdown-item" href="../../rutas/back/editar_punto.php">Punto</a></li>
                       </ul>
                     </div> 
@@ -103,7 +103,7 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../../../../rutas/instalacion/back/listar.php">Instalaciones</a></li>
-                        <li><a class="dropdown-item" href="../../rutas/back/listarP.php">Puntos</a></li>
+                        <li><a class="dropdown-item" href="../../../../rutas/punto/back/listarP.php">Puntos</a></li>
                       </ul>
                     </div>  
                   </div> 
