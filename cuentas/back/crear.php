@@ -28,7 +28,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($result_num_identificacion_check->num_rows > 0) {
             session_start();
             $_SESSION['mensaje'] = 'El numero de identificación ya existe';
-            header('Location: publicar.php');
+            header('Location: createUser.php');
             exit;
         } else {
             // Preparar la consulta SQL de inserción
@@ -39,12 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($conex->query($sql_insert) === TRUE) {
                 session_start();
                 $_SESSION['mensaje'] = 'Usuario registrado correctamente.';
-                header('Location: publicar.php');
+                header('Location: createUser.php');
                 exit;
             } else {
                 session_start();
                 $_SESSION['mensaje'] = 'Error al registrar el usuario: ' . $conex->error;
-                header('Location: publicar.php');
+                header('Location: createUser.php');
                 exit;
             }
         }

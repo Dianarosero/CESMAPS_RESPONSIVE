@@ -1,9 +1,5 @@
 <?php
 include('../../base de datos/sesiones.php');
-?>
-
-<?php
-session_start();
 
 // Verifica si hay un mensaje en la sesión
 if (isset($_SESSION['mensaje'])) {
@@ -82,7 +78,7 @@ if (isset($_SESSION['mensaje'])) {
 
 <?php
             //conexion con la base de datos
-            include("con_db.php");
+            include("../../base de datos/con_db.php");
 
             //datos del usuario
             $name="";
@@ -115,7 +111,7 @@ if (isset($_SESSION['mensaje'])) {
                 }
             }
 
-            if(isset($_POST['actualizar'])){
+            if (isset($_POST['actualizar'])) {
               $name = $_POST['nombres'];
               $apellido = $_POST['apellidos'];
               $n_telefono = $_POST['num_telefono'];
@@ -124,39 +120,35 @@ if (isset($_SESSION['mensaje'])) {
               //$email = $_POST['email'];
               //$contrasena = $_POST['password'];
               $tUsuario = $_POST['cboTipoUsuarios'];
-
+      
               $sql = "UPDATE usuario SET nombre='$name', apellido='$apellido', email='$email',
                       password='$contrasena', num_ID='$n_id', tipo_id='$tID', teléfono='$n_telefono',
                       tipo_usuario='$tUsuario' WHERE email='$identiUS'";
-
-
+      
               // Obtener el número de ID actual del usuario
               $query_usuario_actual = mysqli_query($conex, "SELECT num_ID FROM usuario WHERE email='$identiUS'");
               $row_usuario_actual = mysqli_fetch_assoc($query_usuario_actual);
               $n_id_actual = $row_usuario_actual['num_ID'];
-
+      
               //verificar que el num_id no se repita en BD
-              $verificar_id=mysqli_query($conex, "SELECT*FROM usuario WHERE num_ID='$n_id' ");
+              $verificar_id = mysqli_query($conex, "SELECT * FROM usuario WHERE num_ID='$n_id' ");
               //$verificar_id2=mysqli_query($conex, "SELECT*FROM usuario WHERE num_ID!='$n_id' ");
-              if(mysqli_num_rows($verificar_id)>0 && $n_id != $n_id_actual){
-                  
-                session_start();
-                $_SESSION['mensaje'] = 'Numero de identificación ya existe ';
-                header('Location: editarD.php');
-                exit;
-              }
-            
-
-              
-
-              }else{
+              if (mysqli_num_rows($verificar_id) > 0 && $n_id != $n_id_actual) {
+                  session_start();
+                  $_SESSION['mensaje'] = 'Número de identificación ya existe';
+                  header('Location: editarD.php');
+                  exit;
+              } else {
+                  // Ejecutar la consulta SQL
                   $resultadoo = mysqli_query($conex, $sql);
-                  if($resultadoo){
-                      echo "<script>alert('Sus datos han sido actualizados correctamente'); location.href = 'visualizarInf.php';</script>";
-                  
+                  if ($resultadoo) {
+                      echo "<script>alert('Sus datos han sido actualizados correctamente'); window.location.href = 'visualizarInf.php';</script>";
+                  } else {
+                      echo "Error al ejecutar la consulta: " . mysqli_error($conex);
                   }
               }
-         
+          }
+        
       ?>
         
 
@@ -189,7 +181,7 @@ if (isset($_SESSION['mensaje'])) {
                     <p class="text-center small">Edita los datos personales de tu cuenta</p>
                   </div>
   
-                  <form class="needs-validation" method="POST" action="tu_archivo_php.php" novalidate>
+                  <form class="needs-validation" method="POST" novalidate>
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="nombres" class="form-label">Nombres</label>
@@ -258,7 +250,7 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
   
                     <div class="col-12 mt-4">
-                      <button class="btn btn-primary w-100" type="submit" name="register">Editar</button>
+                      <button class="btn btn-primary w-100" type="submit" name="actualizar">Editar</button>
                     </div>
                    
                 </div>
