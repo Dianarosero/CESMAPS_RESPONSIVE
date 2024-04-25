@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "El número de identificación ya está registrado.";
         } else {
             // Preparar la consulta SQL de inserción
-            $sql_insert = "INSERT INTO usuario (nombre, apellido, email, password, num_ID, tipo_id, telefono, tipo_usuario) 
+            $sql_insert = "INSERT INTO usuario (nombre, apellido, email, password, num_ID, tipo_id, teléfono, tipo_usuario) 
                            VALUES ('$nombres', '$apellidos', '$email', '$password', '$num_identificacion', '$tipo_id', '$telefono', '$tipo_usuario')";
             
             // Ejecutar la consulta SQL de inserción
