@@ -1,3 +1,21 @@
+<?php
+include('../../base de datos/sesiones.php');
+?>
+
+<?php
+session_start();
+
+// Verifica si hay un mensaje en la sesión
+if (isset($_SESSION['mensaje'])) {
+    echo "<script>
+          alert('{$_SESSION['mensaje']}');
+          </script>";
+
+    // Una vez mostrado, elimina el mensaje de la sesión para que no se muestre de nuevo
+    unset($_SESSION['mensaje']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,14 +46,6 @@
 
   <!-- Template Main CSS File -->
   <link href="../front/editar/css/style_editarD.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: NiceAdmin
-  * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
-  * Updated: Apr 7 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
   <style>
     .container {
     max-width: 1400px; /* Cambié el tamaño máximo del contenedor a 1400px */
@@ -70,6 +80,86 @@
 
 <body>
 
+<?php
+            //conexion con la base de datos
+            include("con_db.php");
+
+            //datos del usuario
+            $name="";
+            $apellido="";
+            $n_telefono="";
+            $tID="";
+            $n_id="";
+            $email="";
+            $contrasena="";
+            $tUsuario="";
+            $identiUS=$_SESSION['usuario'];
+            $query_usuario=mysqli_query($conex, "SELECT * FROM usuario where email='$identiUS'");
+            $row_usuario=mysqli_num_rows($query_usuario);
+            //session_start();
+            if(!isset($_SESSION['usuario'])){
+            echo "redirigir al login";
+            header('Location: logg.php');
+            }
+
+            if($row_usuario=$identiUS){
+                while($arr=mysqli_fetch_assoc($query_usuario)){
+                    $name=$arr['nombre'];
+                    $apellido=$arr['apellido'];
+                    $n_telefono=$arr['teléfono'];
+                    $tID=$arr['tipo_id'];
+                    $n_id=$arr['num_ID'];
+                    $email=$arr['email'];
+                    $contrasena=$arr['password'];
+                    $tUsuario=$arr['tipo_usuario'];
+                }
+            }
+
+            if(isset($_POST['actualizar'])){
+              $name = $_POST['nombres'];
+              $apellido = $_POST['apellidos'];
+              $n_telefono = $_POST['num_telefono'];
+              $tID = $_POST['cboTipoid'];
+              $n_id = $_POST['num_identificacion'];
+              //$email = $_POST['email'];
+              //$contrasena = $_POST['password'];
+              $tUsuario = $_POST['cboTipoUsuarios'];
+
+              $sql = "UPDATE usuario SET nombre='$name', apellido='$apellido', email='$email',
+                      password='$contrasena', num_ID='$n_id', tipo_id='$tID', teléfono='$n_telefono',
+                      tipo_usuario='$tUsuario' WHERE email='$identiUS'";
+
+
+              // Obtener el número de ID actual del usuario
+              $query_usuario_actual = mysqli_query($conex, "SELECT num_ID FROM usuario WHERE email='$identiUS'");
+              $row_usuario_actual = mysqli_fetch_assoc($query_usuario_actual);
+              $n_id_actual = $row_usuario_actual['num_ID'];
+
+              //verificar que el num_id no se repita en BD
+              $verificar_id=mysqli_query($conex, "SELECT*FROM usuario WHERE num_ID='$n_id' ");
+              //$verificar_id2=mysqli_query($conex, "SELECT*FROM usuario WHERE num_ID!='$n_id' ");
+              if(mysqli_num_rows($verificar_id)>0 && $n_id != $n_id_actual){
+                  
+                session_start();
+                $_SESSION['mensaje'] = 'Numero de identificación ya existe ';
+                header('Location: editarD.php');
+                exit;
+              }
+            
+
+              
+
+              }else{
+                  $resultadoo = mysqli_query($conex, $sql);
+                  if($resultadoo){
+                      echo "<script>alert('Sus datos han sido actualizados correctamente'); location.href = 'visualizarInf.php';</script>";
+                  
+                  }
+              }
+         
+      ?>
+        
+
   <a href="visualizarInf.php" class="btn-back">
     <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
   </a>
@@ -103,13 +193,13 @@
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="nombres" class="form-label">Nombres</label>
-                        <input type="text" name="nombres" class="form-control" id="nombres" required>
+                        <input type="text" value="<?= $name; ?>" name="nombres" class="form-control" id="nombres" required>
                         <div class="invalid-feedback">Por favor, ingresa tus nombres.</div>
                       </div>
   
                       <div class="col-md-6 mb-4">
                         <label for="cboTipoid" class="form-label">Tipo de Identificación</label>
-                        <select name="cboTipoid" class="form-select" id="cboTipoid" required>
+                        <select name="cboTipoid" value="<?= $tID; ?>" class="form-select" id="cboTipoid" required>
                             <option value="">Selecciona el tipo de Identificación</option>
                             <option value="cedula">CEDULA</option>
                             <option value="tarjeta_identidad">TARJETA DE IDENTIDAD</option>
@@ -122,13 +212,13 @@
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="apellidos" class="form-label">Apellidos</label>
-                        <input type="text" name="apellidos" class="form-control" id="apellidos" required>
+                        <input type="text"  value="<?= $apellido; ?>" name="apellidos" class="form-control" id="apellidos" required>
                         <div class="invalid-feedback">Por favor, ingresa tus apellidos.</div>
                       </div>
   
                       <div class="col-md-6 mb-4">
                         <label for="num_identificacion" class="form-label">Número de Identificación</label>
-                        <input type="text" name="num_identificacion" class="form-control" id="num_identificacion" pattern="[0-9]+" required>
+                        <input type="text" value="<?= $n_id; ?>" name="num_identificacion" class="form-control" id="num_identificacion" pattern="[0-9]+" required>
                         <div class="invalid-feedback">Por favor, ingresa tu número de identificación.</div>
                       </div>
                     </div>
@@ -136,7 +226,7 @@
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="cboTipoUsuarios" class="form-label">Tipo de Usuario</label>
-                        <select name="cboTipoUsuarios" class="form-select" id="cboTipoUsuarios" required>
+                        <select  value="<?= $tUsuario; ?>" name="cboTipoUsuarios" class="form-select" id="cboTipoUsuarios" required>
                             <option value="">Selecciona un tipo de usuario</option>
                             <option value="Estudiante">ESTUDIANTE</option>
                             <option value="Profesor">DOCENTE</option>
@@ -148,7 +238,7 @@
 
                       <div class="col-md-6 mb-4">
                         <label for="num_telefono" class="form-label">Número de Teléfono</label>
-                        <input type="text" name="num_telefono" class="form-control" id="num_telefono" pattern="[0-9]+" required>
+                        <input type="text" value="<?= $n_telefono; ?>" name="num_telefono" class="form-control" id="num_telefono" pattern="[0-9]+" required>
                         <div class="invalid-feedback">Por favor, ingresa tu número de teléfono.</div>
                       </div>
                     </div>
@@ -156,13 +246,13 @@
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" name="email" class="form-control" id="email" required>
+                        <input type="email" value="<?= $email; ?>" name="email" class="form-control" id="email" required>
                         <div class="invalid-feedback">Por favor, ingresa un correo electrónico válido.</div>
                       </div>
 
                       <div class="col-md-6 mb-4">
                         <label for="password" class="form-label">Contraseña</label>
-                        <input type="password" name="password" class="form-control" id="password" required>
+                        <input type="password" value="<?= $contrasena; ?>" name="password" class="form-control" id="password" required>
                         <div class="invalid-feedback">Por favor, ingresa una contraseña.</div>
                       </div>
                     </div>
