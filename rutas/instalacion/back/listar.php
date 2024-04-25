@@ -58,7 +58,6 @@
       <div class="container-fluid">
       <a href="listar.php" class="logo"><img src="../front/listar/img/volver-01-01-01.png" alt="" class="img-fluid"></a>
       <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link scrollto" href="#contact"></a></li>
       <!-- Agrega más elementos de la barra de navegación aquí si es necesario -->
       </ul>
       </div>

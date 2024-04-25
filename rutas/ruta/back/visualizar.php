@@ -41,25 +41,30 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
-
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="../../../index.html" class="active">Home</a></li>
-      </nav><!-- .navbar -->
-
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a class="nav-link scrollto" href="#contact">Volver</a></li>
+  <header id="header" class="fixed-top d-flex align-items-center">
+  <div class="container d-flex align-items-center justify-content-between">
+  
+    <nav class="navbar">
+      <div class="container-fluid">
+        <a href="../../../index.html" class="logo"><img src="../front/recorrido/img/volver-01-01-01.png" alt="" class="img-fluid" style="width: 100%; max-width: 100px; height: auto; list-style-type: none;"></a>
+        <ul class="navbar-nav">
+          <!-- Agrega más elementos de la barra de navegación aquí si es necesario -->
         </ul>
-        <i class="bi bi-list mobile-nav-toggle"></i>
-      </nav>
+      </div>
+    </nav>
 
-    </div>
-  </header><!-- End Header -->
+    <nav id="navbar" class="navbar">
+      <ul>
+        <!-- Quita el punto alrededor de la imagen de cerrar sesión -->
+        <li><a href="../../../base de datos/cerrar.php" class="logo"><img src="../front/recorrido/img/cerrar_sesion-01.png" alt="" class="img-fluid" style="width: 100%; max-width: 100px; height: auto; list-style-type: none;"></a></li>
+      </ul>
+    </nav>
+
+  </div>
+</header>
+
+
+<!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="hero">
@@ -103,9 +108,6 @@
     </section>
 
 
-
-
-
     <!-- ======= Testimonials Section ======= -->
     <section id="testimonials" class="testimonials section-bg">
       <div class="container" data-aos="fade-up">
@@ -120,7 +122,7 @@
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
-                  <img src="../front/recorrido/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+                  <img src="../front/recorrido/img/" class="testimonial-img" alt="">
                   <h3>Saul Goodman</h3>
                   <h4>Ceo &amp; Founder</h4>
                   <div class="stars">
@@ -138,7 +140,7 @@
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
-                  <img src="../front/recorrido/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+                  <img src="../front/recorrido/img/" class="testimonial-img" alt="">
                   <h3>Sara Wilsson</h3>
                   <h4>Designer</h4>
                   <div class="stars">
