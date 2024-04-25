@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+// Verifica si hay un mensaje en la sesión
+if (isset($_SESSION['mensaje'])) {
+    echo "<script>
+          alert('{$_SESSION['mensaje']}');
+          </script>";
+
+    // Una vez mostrado, elimina el mensaje de la sesión para que no se muestre de nuevo
+    unset($_SESSION['mensaje']);
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
