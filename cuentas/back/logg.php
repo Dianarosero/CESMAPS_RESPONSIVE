@@ -1,3 +1,18 @@
+<?php
+session_start();
+
+// Verifica si hay un mensaje en la sesión
+if (isset($_SESSION['mensaje'])) {
+    echo "<script>
+          alert('{$_SESSION['mensaje']}');
+          </script>";
+
+    // Una vez mostrado, elimina el mensaje de la sesión para que no se muestre de nuevo
+    unset($_SESSION['mensaje']);
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,21 +49,37 @@
       text-align: center;
       margin-top: 20px; /* Ajusta el margen superior según sea necesario */
     }
+
+    .btn-back,
+    .logout-button {
+      background: none;
+      border: none;
+      padding: 0;
+    }
+
+    .btn-back img,
+    .logout-button img {
+      display: block;
+      width: 100px;
+      height: auto;
+    }
+    
   </style>
 </head>
 
 <body>
+  <a href="javascript:history.go(-1)" class="btn-back">
+    <img src="../front/inicio/img/volver-01-01-01.png" alt="Volver">
+  </a>
 
   <main>
     <div class="container">
-
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
 
               <div class="d-flex justify-content-center py-4">
-                <a href="index.html" class="logo d-flex align-items-center w-auto">
+                <a href="../../index.html" class="logo d-flex align-items-center w-auto">
                   <img src="../front/inicio/img/flavicon-01.png" alt="">
                   <span class="d-none d-lg-block">CESMAPS</span>
                 </a>
@@ -63,7 +94,7 @@
                     <p class="text-center small">Ingresa tu usuario y contraseña para iniciar sesión</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
+                  <form class="row g-3 needs-validation" action="loguear.php" method="post" novalidate>
 
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Correo Electronico</label>
@@ -82,19 +113,16 @@
 
                   
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Ingresar</button>
+                      <button class="btn btn-primary w-100" name="ingresar" type="submit">Ingresar</button>
                     </div>
-                    
-                    <div class="col-12 mt-2"> <!-- Agregado mt-2 para añadir espacio -->
-                      <button class="btn btn-primary w-100" type="submit">Crear Cuenta</button>
+                    </form>
+                    <div class="col-12 mt-2">
+                      <a href="createUser.php" class="btn btn-primary w-100">Crear Cuenta</a>
                     </div>
-                  </form>
-
                 </div>
               </div>
 
               <div class="credits-container">                
-               <!-- Designed by <a href="https://bootstrapmade.com/">Encryption</a>-->
                Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados
               </div>
 
@@ -125,7 +153,7 @@
   <script src="../front/inicio/js/main.js"></script>
   <script src="../front/inicio/js/min-max.js"></script>
 
-
+    <!-- banner flotante -->
   <div class="floating-banner" id="floatingBanner">
     <button id="toggleButton" onclick="toggleBanner()">Mostrar / Ocultar</button>
     <div class="banner-content">

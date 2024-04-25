@@ -73,6 +73,7 @@ h6 {
   margin-left: 60px; /* Establecer un margen a la izquierda para dejar espacio para el encabezado */
 }
 
+
 @media (max-width: 1199px) {
   #main {
     padding: 20px;
