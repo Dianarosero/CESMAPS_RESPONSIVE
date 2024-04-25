@@ -78,7 +78,7 @@
                     <h5 class="card-title text-center pb-0 fs-4">Crea tu cuenta</h5>
                     <p class="text-center small">Ingresa tus datos personales para crear una cuenta</p>
                   </div>
-                  <form class="needs-validation" method="POST" action="tu_archivo_php.php" novalidate>
+                  <form class="needs-validation" method="POST" action="crear.php" novalidate>
                     <div class="row">
                       <div class="col-md-6 mb-4">
                         <label for="nombres" class="form-label">Nombres</label>
