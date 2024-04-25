@@ -1,3 +1,7 @@
+<?php
+include('../../base de datos/sesiones.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -47,6 +51,44 @@
 </head>
 
 <body>
+<?php
+            //conexion con la base de datos
+            include("../../base de datos/con_db.php");
+
+            //datos del usuario
+            $name="";
+            $apellido="";
+            $n_telefono="";
+            $tID="";
+            $n_id="";
+            $email="";
+            $tUsuario="";
+            $identiUS=$_SESSION['usuario'];
+           // echo $_SESSION['usuario'];
+            $query_usuario=mysqli_query($conex, "SELECT * FROM usuario where email='$identiUS'");
+            $row_usuario=mysqli_num_rows($query_usuario);
+            //session_start();
+            if(!isset($_SESSION['usuario'])){
+            echo "redirigir al login";
+            header('Location: logg.php');
+            }
+            
+
+            if($row_usuario=$identiUS){
+                while($arr=mysqli_fetch_assoc($query_usuario)){
+                    $name=$arr['nombre'];
+                    $apellido=$arr['apellido'];
+                    $n_telefono=$arr['teléfono'];
+                    $tID=$arr['tipo_id'];
+                    $n_id=$arr['num_ID'];
+                    $email=$arr['email'];
+                    $tUsuario=$arr['tipo_usuario'];
+                }
+            }
+        ?>
+
+
+
   <a href="javascript:history.go(-1)" class="btn-back">
     <img src="../front/visualizar/img/volver-01-01-01.png" alt="Volver">
   </a>
@@ -81,40 +123,40 @@
                     <div class="row mb-3">
                       <div class="col-md-6">
                         <label for="nombres" class="form-label">Nombre</label>
-                        <input type="text" name="nombres" class="form-control" id="nombres" value="<?= $name; ?>" required disabled>
+                        <input type="text" value="<?= $name; ?>" name="nombres" class="form-control" id="nombres" value="<?= $name; ?>" required disabled>
                       </div>
                       <div class="col-md-6">
                         <label for="cboTipoid" class="form-label">Tipo de Identificación</label>
-                        <input type="text" name="cboTipoid" class="form-control" id="cboTipoid" value="<?= $tID; ?>" required disabled>
+                        <input type="text" value="<?= $tID; ?>" name="cboTipoid" class="form-control" id="cboTipoid" value="<?= $tID; ?>" required disabled>
                       </div>
                     </div>
                     <!-- Segunda fila -->
                     <div class="row mb-3">
                       <div class="col-md-6">
                         <label for="apellidos" class="form-label">Apellidos</label>
-                        <input type="text" name="apellidos" class="form-control" id="apellidos" value="<?= $apellido; ?>" required disabled>
+                        <input type="text" value="<?= $apellido; ?>" name="apellidos" class="form-control" id="apellidos" value="<?= $apellido; ?>" required disabled>
                       </div>
                       <div class="col-md-6">
                         <label for="num_identificacion" class="form-label">Número de Identificación</label>
-                        <input type="text" name="num_identificacion" class="form-control" id="num_identificacion" value="<?= $n_id; ?>" required disabled>
+                        <input type="text" value="<?= $n_id; ?>" name="num_identificacion" class="form-control" id="num_identificacion" value="<?= $n_id; ?>" required disabled>
                       </div>
                     </div>
                     <!-- Tercera fila -->
                     <div class="row mb-3">
                       <div class="col-md-6">
                         <label for="cboTipoUsuarios" class="form-label">Tipo de Usuario</label>
-                        <input type="text" name="cboTipoUsuarios" class="form-control" id="cboTipoUsuarios" value="<?= $tUsuario; ?>" required disabled>
+                        <input type="text" value="<?= $tUsuario; ?>" name="cboTipoUsuarios" class="form-control" id="cboTipoUsuarios" value="<?= $tUsuario; ?>" required disabled>
                       </div>
                       <div class="col-md-6">
                         <label for="num_telefono" class="form-label">Número de Teléfono</label>
-                        <input type="text" name="num_telefono" class="form-control" id="num_telefono" value="<?= $n_telefono; ?>" required disabled>
+                        <input type="text" value="<?= $n_telefono; ?>" name="num_telefono" class="form-control" id="num_telefono" value="<?= $n_telefono; ?>" required disabled>
                       </div>
                     </div>
                     <!-- Cuarta fila -->
                     <div class="row mb-3">
                       <div class="col-md-12">
                         <label for="email" class="form-label">Correo Electrónico</label>
-                        <input type="email" name="email" class="form-control" id="email" value="<?= $email; ?>" required disabled>
+                        <input type="email" value="<?= $email; ?>" name="email" class="form-control" id="email" value="<?= $email; ?>" required disabled>
                       </div>
                     </div>
                     <!-- Botón de Edición -->
