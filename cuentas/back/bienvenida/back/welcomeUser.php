@@ -56,7 +56,6 @@
   <main>
     
     <div class="container-lg">
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
@@ -71,7 +70,7 @@
               <div class="card mb-3">
                 <div class="card-body">
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Bienvenido Administrador</h5>
+                    <h5 class="card-title text-center pb-0 fs-4">Bienvenido Administradordxx</h5>
                     <p class="text-center small">¿Que deseas hacer?</p>
                   </div>
   
