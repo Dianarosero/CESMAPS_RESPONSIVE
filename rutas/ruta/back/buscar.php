@@ -73,9 +73,6 @@
                     <div class="col-12 mt-4">
                       <button class="btn btn-primary w-100" type="submit" name="buscar_ruta">Buscar Recorrido</button>
                     </div>
-                    <div class="col-12 mt-2">
-                      <button class="btn btn-secondary w-100" type="submit" name="info_punto">Información del Punto</button>
-                    </div>
                   </form>
 
                 </div>

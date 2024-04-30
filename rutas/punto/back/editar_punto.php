@@ -28,16 +28,18 @@
 </head>
 
 <body>
+
   
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var puntoSeleccionado = prompt("Ingrese el nombre del punto a editar:");
-    if (puntoSeleccionado != null) {
-      // Establecer el punto seleccionado en el label azul
-      document.getElementById("nombre_instalacion").value = puntoSeleccionado;
-    }
-  });
-</script>
+  <!-- JavaScript para mostrar la ventana emergente -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var puntoSeleccionado = prompt("Ingrese el punto que desea editar:");
+      if (puntoSeleccionado != null) {
+        // Establecer el punto seleccionado en el label azul
+        document.getElementById("nombre_instalacion").value = puntoSeleccionado;
+      }
+    });
+  </script>
 
   <a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
     <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
