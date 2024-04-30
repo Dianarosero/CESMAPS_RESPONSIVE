@@ -315,6 +315,5 @@ h6 {
 }
 
 .btn-primary:active {
-  background: #073763;
   transform: scale(1.05);
 }
