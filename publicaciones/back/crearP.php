@@ -7,7 +7,6 @@ $titulo = $_POST['titulo'];
 $autor = $_POST['autor'];
 $contacto = $_POST['contacto'];
 $descripcion = $_POST['descripcion'];
-$estado = $_POST['estado'];
 $categoria_nombre = $_POST['categoria']; // Nombre de la categoría desde el formulario
 
 // Verificar si el título de la publicación ya existe
@@ -50,7 +49,7 @@ move_uploaded_file($archivo_temporal, $ruta_archivo);
 
 // Insertar datos en la tabla 'publicaciones'
 $sql = "INSERT INTO publicaciones (titulo, autor, contacto, descripcion, archivo, estado, id_categoria)
-        VALUES ('$titulo', '$autor', '$contacto', '$descripcion', '$ruta_archivo', '$estado', '$categoria_id')";
+        VALUES ('$titulo', '$autor', '$contacto', '$descripcion', '$ruta_archivo', '0', '$categoria_id')";
 
 if ($conex->query($sql) === TRUE) {
     session_start();

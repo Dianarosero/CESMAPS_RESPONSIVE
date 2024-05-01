@@ -102,16 +102,6 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
 
                     <div class="col-12">
-                        <label for="estadoSelect" class="form-label">Estado</label>
-                        <select class="form-select" id="estadoSelect" name="estado" required>
-                            <option value="" disabled selected>Seleccione un Estado</option>
-                            <option value="activar">Activar</option>
-                            <option value="desactivar">Desactivar</option>
-                        </select>
-                        <div class="invalid-feedback">Por favor seleccione un estado.</div>
-                    </div>
-
-                    <div class="col-12">
                         <label for="categoriaSelect" class="form-label">Categoría</label>
                         <select class="form-select" id="categoriaSelect" name="categoria" required>
                             <option value="" disabled selected>Seleccione una Categoría</option>

@@ -95,7 +95,7 @@
             // Conexión a la base de datos
             include("../../base de datos/con_db.php");
             // Consulta para obtener las publicaciones
-            $sql = "SELECT * FROM publicaciones";
+            $sql = "SELECT * FROM publicaciones WHERE estado = '0'";
               $result = $conex->query($sql);
 
               if ($result->num_rows > 0) {
@@ -115,6 +115,7 @@
           ?>
         </div>
       </div>
+      
     </section><!-- End Icon Boxes Section -->
 
   </main>
