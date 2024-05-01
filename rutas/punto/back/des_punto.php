@@ -47,7 +47,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $imagen_error = "Por favor, selecciona una imagen.";
     } else {
         $foto = $_FILES['imagen']['name'];
-        $ruta_imagen = $_FILES['imagen']['tmp_name'];
+        $imagen_temporal=$_FILES['imagen']['tmp_name'];
+        $ruta_imagen = "Puntos/".$foto;
     }
 
     // Si no hay errores, proceder con la inserción de datos
@@ -61,9 +62,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
         // Mover la imagen al directorio de destino
-        if (move_uploaded_file($ruta_imagen, "puntos/$foto")) {
+        if (move_uploaded_file($imagen_temporal,$ruta_imagen)) {
             // Insertar los datos en la tabla de puntos
-            $query = "INSERT INTO puntos (nombre,descripcion,foto,id_instalacion,id_sede) VALUES ('$nombre','$descripcion', '$foto' ,'$instalacion','1')";
+            $query = "INSERT INTO puntos (nombre,descripcion,foto,id_instalacion,id_sede) VALUES ('$nombre','$descripcion', '$ruta_imagen' ,'$instalacion','1')";
 
             if (mysqli_query($conex, $query)) {
                 echo "<script>alert('Punto creado exitosamente');</script>";

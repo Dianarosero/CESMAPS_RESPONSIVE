@@ -1,3 +1,112 @@
+<?php
+// Establecer la conexión a la base de datos (usando MySQLi)
+$conex = mysqli_connect("localhost", "root", "", "cesmaps") ;
+
+// Verificar si la conexión fue exitosa
+if (!$conex) {
+    die("Error al conectar a la base de datos: " . mysqli_connect_error());
+}
+    // si le da crear
+    if(isset($_POST['crear'])){
+        //si los campos estan llenos
+        if(strlen($_POST['origen'])>=1 
+        && strlen($_POST['destino'])>=1 
+        && strlen($_POST['descripcion'])>=1
+        && $_FILES['imagenes']['error'] == 0) {
+            $origin1=trim($_POST['origen']);
+            $destin1=trim($_POST['destino']);
+            $consu1 = "SELECT * FROM  puntos WHERE nombre = '$origin1'";
+            $consu21 = "SELECT * FROM  puntos WHERE nombre = '$destin1'";
+            
+            $respta1= mysqli_query($conex, $consu1);
+            $respta21= mysqli_query($conex, $consu21);
+            
+            $fila3 = mysqli_fetch_assoc($respta1);
+            $fila4 = mysqli_fetch_assoc($respta21);
+
+            $id_origin = $fila3['id'];
+            $id_destin = $fila4['id'];
+            
+            $consu3 = "SELECT * FROM  rutas WHERE id_punto_ini = '$id_origin' AND id_punto_fin = '$id_destin'";
+            $respta3= mysqli_query($conex, $consu3);
+
+            $num_filas1 = mysqli_num_rows($respta1);
+            $num_filas21 = mysqli_num_rows($respta21);
+            $num_filas3 = mysqli_num_rows($respta3);
+                // si los puntos de inicio y fin son diferentes
+                if ($_POST['origen']!=$_POST['destino']) {
+                    //si existen los puntos
+                    // if ($num_filas1 > 0 && $num_filas21 > 0) {
+                        // si la ruta no existe
+                        if ($num_filas3==0) {
+                            $ori=trim($_POST['origen']);
+                            $con1 = "SELECT * FROM  puntos WHERE nombre = '$ori'";
+                            $res= mysqli_query($conex, $con1);
+                            $fila = mysqli_fetch_assoc($res);
+                            $id_ori = $fila['id'];
+
+
+                            $dest=trim($_POST['destino']);
+                            $con2 = "SELECT * FROM  puntos WHERE nombre = '$dest'";
+                            $res2= mysqli_query($conex, $con2);
+                            $fila2 = mysqli_fetch_assoc($res2);
+                            $id_dest = $fila2['id'];
+
+
+                            $desc=trim($_POST['descripcion']);
+                            $tiempo=trim($_POST['time']);
+
+                            $foto = $_FILES['imagenes']['name'];
+                            $image = $_FILES['imagenes']['tmp_name'];
+                            $ruta="Rutas/".$foto;
+                            $foto="Rutas/".$foto;
+                            
+                            move_uploaded_file($image,$ruta);
+
+                            $consulta="INSERT INTO rutas(id_punto_ini, id_punto_fin, descripcion, ruta_foto, timpo_estimado) VALUES 
+                            ('$id_ori','$id_dest','$desc','$ruta','$tiempo')";
+                            
+                            $resultado=mysqli_query($conex,$consulta); 
+
+                            if($resultado){
+                                echo "<script>
+                                alert('Ruta creada con exito');
+                                </script>";
+                                header("refresh:0; url=crear.php");
+                            }else{
+                                echo "<script>
+                                alert('La ruta no ha sido creada');
+                                </script>";
+                                header("refresh:0; url=crear.php");
+                            }
+                        }else {
+                            echo "<script>
+                            alert('La ruta ya existe');            
+                            </script>";
+                            header("refresh:0; url=crear.php");
+                        }
+                }else {
+                    echo "<script>
+                        alert('Punto de inicio y fin no pueden ser iguales');            
+                        </script>";
+                        header("refresh:0; url=crear.php");
+                }
+        }else{
+            echo "<script>
+                alert('Completar Campos');          
+                </script>";
+                header("refresh:0; url=crear.php");
+            }
+    }  
+    
+    if(isset($_POST['limpiar'])){
+        echo "<script>                            
+        window.close();
+        </script>";
+
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,28 +160,39 @@
                     <p class="text-center small">Crea una nueva ruta</p>
                   </div>
 
-                  <form class="needs-validation" method="POST" action="tu_archivo_php.php" novalidate>
+                  <form class="needs-validation" method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>" enctype="multipart/form-data" novalidate>
                     <div class="mb-4">
                       <label for="punto_partida" class="form-label">Punto de Partida</label>
-                      <select name="punto_partida" class="form-select" id="punto_partida" required>
+                      <select name="origen" class="form-select" id="punto_partida" required>
                           <option value="">Selecciona un punto de partida</option>
-                          <!-- Aquí podrías cargar dinámicamente los puntos de partida desde la base de datos -->
+                          <?php
+                            $query_puntos = "SELECT * FROM puntos";
+                            $result_puntos = mysqli_query($conex, $query_puntos);
+                            while($row_puntos = mysqli_fetch_array($result_puntos)){
+                                echo "<option value='".$row_puntos['nombre']."'>".$row_puntos['nombre']."</option>";
+                            }
+                          ?>
                       </select>
                       <div class="invalid-feedback">Por favor, selecciona un punto de partida.</div>
                     </div>
 
                     <div class="mb-4">
                       <label for="punto_destino" class="form-label">Punto de Destino</label>
-                      <select name="punto_destino" class="form-select" id="punto_destino" required>
+                      <select name="destino" class="form-select" id="punto_destino" required>
                           <option value="">Selecciona un punto de destino</option>
-                          <!-- Aquí podrías cargar dinámicamente los puntos de destino desde la base de datos -->
+                          <?php
+                            $result_puntos = mysqli_query($conex, $query_puntos);
+                            while($row_puntos = mysqli_fetch_array($result_puntos)){
+                                echo "<option value='".$row_puntos['nombre']."'>".$row_puntos['nombre']."</option>";
+                            }
+                          ?>
                       </select>
                       <div class="invalid-feedback">Por favor, selecciona un punto de destino.</div>
                     </div>
 
                     <div class="mb-4">
                       <label for="tiempo_estimado" class="form-label">Tiempo Estimado (minutos)</label>
-                      <input type="number" name="tiempo_estimado" class="form-control" id="tiempo_estimado" required>
+                      <input type="number" name="time" class="form-control" id="tiempo_estimado" required>
                       <div class="invalid-feedback">Por favor, ingresa el tiempo estimado en minutos.</div>
                     </div>
 
@@ -84,7 +204,7 @@
 
                     <div class="mb-4">
                       <label for="imagen" class="form-label">Insertar Imagen</label>
-                      <input type="file" name="imagen" class="form-control" id="imagen" required>
+                      <input type="file" name="imagenes" class="form-control" id="imagen" required>
                       <div class="invalid-feedback">Por favor, selecciona una imagen.</div>
                     </div>
 
@@ -92,6 +212,7 @@
                       <button class="btn btn-primary w-100" type="submit" name="crear">Crear Ruta</button>
                     </div>
 
+                  </form>
 
                 </div>
               </div>
@@ -118,15 +239,6 @@
 
   <!-- Vendor JS Files -->
   <script src="../front/crear/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script>
-    function crearPunto() {
-      // Aquí puedes agregar la lógica para crear un nuevo punto de instalación
-      // Puedes mostrar un modal, redireccionar a una página de creación de punto, etc.
-      // Por ejemplo:
-      alert("Aquí se crearía un nuevo punto de instalación.");
-    }
-  </script>
 
 </body>
 

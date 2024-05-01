@@ -14,7 +14,7 @@ if ($result->num_rows > 0) {
     // Iterar sobre los resultados y almacenar los datos en variables
     while($row = $result->fetch_assoc()) {
         $titulo = $row["nombre"];
-        $archivo = $row["foto"];
+        $foto = $row["foto"];
         $descripcion = $row["descripcion"];
     }
 } else {
