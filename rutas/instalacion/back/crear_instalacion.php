@@ -22,9 +22,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obtener los datos del formulario
     $nombre = $_POST['nombre_punto'];
     $descripcion = $_POST['descripcion'];
+
     $foto = $_FILES['imagen']['name'];
-    $ruta_imagen = $_FILES['imagen']['tmp_name'];
-    $id_sede = $_POST['id_sede']; // Obtener el id_sede del formulario
+    $imagen_temporal=$_FILES['imagen']['tmp_name'];
+    $ruta_imagen = "Instalaciones/".$foto;
 
     // Validar que los campos no estén vacíos
     if (empty($nombre) || empty($descripcion) || empty($foto)) {
@@ -38,10 +39,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo "<script>alert('La instalación ya existe.')</script>";
         } else {
             // Mover la imagen cargada a una ubicación deseada
-            move_uploaded_file($ruta_imagen, "instalaciones/$foto");
+            move_uploaded_file($imagen_temporal, $ruta_imagen);
 
             // Construir la consulta SQL para insertar la instalación
-            $consulta_insertar = "INSERT INTO instalaciones (nombre, descripcion, foto, id_sede) VALUES ('$nombre', '$descripcion', '$foto', '1')";
+            $consulta_insertar = "INSERT INTO instalaciones (nombre, descripcion, foto, id_sede) VALUES ('$nombre', '$descripcion', '$ruta_imagen', '1')";
 
             // Ejecutar la consulta de inserción y verificar si fue exitosa
             if (mysqli_query($conex, $consulta_insertar)) {
