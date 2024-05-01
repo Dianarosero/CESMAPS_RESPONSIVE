@@ -1,51 +1,91 @@
+<?php
+// Incluir el archivo de conexión a la base de datos
+include("../../../base de datos/con_db.php");
+
+// Realizar la consulta para obtener los datos de la instalación específica utilizando el ID
+$id_instalacion = $_GET['id'];
+
+$sql = "SELECT * FROM instalaciones WHERE id = $id_instalacion";
+$result = $conex->query($sql);
+
+// Verificar si se encontraron resultados
+if ($result->num_rows > 0) {
+  // Iterar sobre los resultados y mostrar los datos
+  while($row = $result->fetch_assoc()) {
+    $titulo = $row["nombre"];
+    $archivo = $row["foto"];
+    $descripcion = $row["descripcion"];
+  }
+} else {
+  // Si no se encontraron resultados, mostrar un mensaje
+  echo "<p>No se encontraron datos de la instalación.</p>";
+}
+
+// Cerrar la conexión a la base de datos
+$conex->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <link href="../front/listar/img/flavicon-01.png" rel="icon">
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>San Francisco</title>
+  <title><?php echo htmlspecialchars($titulo); ?></title>
+  <link href="../front/listar/img/flavicon-01.png" rel="icon">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <link href="../front/listar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="../front/listar/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="../front/listar/css/style_listarI.css" rel="stylesheet">
+  <style>
+  .btn-back,
+  .logout-button {
+    background: none; /* Quita cualquier fondo del botón */
+    border: none; /* Quita cualquier borde del botón */
+    padding: 0; /* Quita cualquier relleno del botón */
+  }
+
+  /* Estilo para las imágenes en los botones */
+  .btn-back img,
+  .logout-button img {
+    display: block; /* Asegura que la imagen sea un bloque para controlar su tamaño */
+    width: 100px; /* Establece el ancho de la imagen */
+    height: auto; /* Permite que la altura se ajuste automáticamente según el ancho */
+  }
+  .fixed-buttons {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999; /* Asegura que los botones estén por encima de otros elementos */
+      padding: 10px; /* Espacio alrededor de los botones */
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  </style>
 </head>
 
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="fixed-top d-flex align-items-center ">
-    <div class="container d-flex align-items-center justify-content-between">
 
-    <nav class="navbar">
-      <div class="container-fluid">
-      <a href="listar.php" class="logo"><img src="../front/listar/img/volver-01-01-01.png" alt="" class="img-fluid"></a>
-      <ul class="navbar-nav">
-      <li class="nav-item"><a class="nav-link scrollto" href="#contact"></a></li>
-      <!-- Agrega más elementos de la barra de navegación aquí si es necesario -->
-      </ul>
-      </div>
-    </nav>
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex justify-content-center align-items-center position-relative">
+    <!-- Botones siempre en la parte superior de la sección de héroe -->
+    <div class="fixed-buttons">
+      <a href="listar.php" class="btn-back">
+        <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
+      </a>
 
-    <nav id="navbar" class="navbar">
-      <ul>
-        <!-- Quita el punto alrededor de la imagen de cerrar sesión -->
-        <li><a href="listar.php" class="logo"><img src="../front/listar/img/cerrar_sesion-01.png" alt="" class="img-fluid" style="list-style-type: none;"></a></li>
-      </ul>
-    </nav>
-
+      <a href="../../../index.html" class="logout-button">
+        <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
+      </a>
     </div>
-  </header><!-- End Header -->
 
-  <main id="main">
-
-    <!-- ======= Hero Section ======= -->
-    <section id="hero" class="d-flex justify-content-center align-items-center">
-      <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
-
-        <!-- Slide 1 -->
+    <div id="heroCarousel" data-bs-interval="5000" class="container carousel carousel-fade" data-bs-ride="carousel">
+      <!-- Slide 1 -->
         <div class="carousel-item active">
           <div class="carousel-container">
-            <h2 class="animate__animated animate__fadeInDown">San Francisco</h2>
+            <h2 class="animate__animated animate__fadeInDown" name="titulo"><?php echo htmlspecialchars($titulo); ?></h2>
           </div>
         </div>
       </div>
@@ -56,18 +96,16 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-6">
-            <img src="../front\listar/img\San-Francisco.jpg" class="img-fluid" alt="San Francisco" style="margin-top: 50px;">
+            <img name="archivo" src="<?php echo htmlspecialchars($archivo); ?>" class="img-fluid" alt="Imagen de la instalación">
           </div>
         </div>
         <div class="row justify-content-center mt-4">
           <div class="col-md-8">
-            <h3>San Francisco:</h3>
-            <p>Es el bloque con mayor capacidad al contar con 6 pisos con salones de clases y modernas aulas de informática y salas Mac fue inaugurado en diciembre del 2012. Podemos ubicarla de varias maneras la primer ingresado por la parte del colegio maría Goretti, también entrado por la entrada principal de la universidad y por el Edificio Holanda cuando entramos tendremos que subir al 3 o 4 piso estas cuentas con unas intercepciones que nos llevaran al Edificio San Francisco</p>
+            <p name="descripcion"><?php echo htmlspecialchars($descripcion); ?></p>
           </div>
         </div>
       </div>
     </section><!-- End Installation Info Section -->
-
 
   </main>
 

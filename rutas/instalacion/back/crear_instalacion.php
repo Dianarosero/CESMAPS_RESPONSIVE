@@ -5,7 +5,7 @@ session_start();
 // Verificar si el usuario ha iniciado sesión
 if (!isset($_SESSION['usuario'])) {
     // Redirigir al usuario a la página de inicio de sesión si no ha iniciado sesión
-    header("CESMAPS_RESPONSIVE\cuentas\back\bienvenida\back\welcome.php");
+    header("Location: CESMAPS_RESPONSIVE/cuentas/back/bienvenida/back/welcome.php");
     exit;
 }
 
@@ -24,6 +24,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $descripcion = $_POST['descripcion'];
     $foto = $_FILES['imagen']['name'];
     $ruta_imagen = $_FILES['imagen']['tmp_name'];
+    $id_sede = $_POST['id_sede']; // Obtener el id_sede del formulario
 
     // Validar que los campos no estén vacíos
     if (empty($nombre) || empty($descripcion) || empty($foto)) {
@@ -40,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             move_uploaded_file($ruta_imagen, "instalaciones/$foto");
 
             // Construir la consulta SQL para insertar la instalación
-            $consulta_insertar = "INSERT INTO instalaciones (nombre, descripcion, foto) VALUES ('$nombre', '$descripcion', '$foto')";
+            $consulta_insertar = "INSERT INTO instalaciones (nombre, descripcion, foto, id_sede) VALUES ('$nombre', '$descripcion', '$foto', '1')";
 
             // Ejecutar la consulta de inserción y verificar si fue exitosa
             if (mysqli_query($conex, $consulta_insertar)) {
@@ -55,6 +56,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Cerrar la conexión
 mysqli_close($conex);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
