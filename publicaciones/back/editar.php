@@ -4,28 +4,28 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Instalaciones</title>
+  <title>Editar Publicaciones</title>
 
 
   <!-- Favicons -->
-  <link href="../front/listar/img/flavicon-01.png" rel="icon">
-  <link href="../front/listar/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="../front/editar/img/flavicon-01.png" rel="icon">
+  <link href="../front/editar/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
-  <link href="../front/listar/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="../front/listar/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../front/listar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../front/listar/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../front/listar/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="../front/listar/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../front/listar/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="../front/listar/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="../front/editar/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="../front/editar/vendor/aos/aos.css" rel="stylesheet">
+  <link href="../front/editar/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="../front/editar/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="../front/editar/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="../front/editar/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="../front/editar/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="../front/editar/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="../front/listar/css/style_listarI.css" rel="stylesheet">
+  <link href="../front/editar/css/style_editar.css" rel="stylesheet">
 
   <style>
   .btn-back,
@@ -65,12 +65,12 @@
 <section id="hero" class="d-flex justify-content-center align-items-center position-relative">
     <!-- Botones siempre en la parte superior de la sección de héroe -->
     <div class="fixed-buttons">
-      <a href="" class="btn-back">
-        <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
+      <a href="../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
+        <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
       </a>
 
-      <a href="cerrar_sesion.php" class="logout-button">
-        <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
+      <a href="../../base de datos/cerrar.php" class="logout-button">
+        <img src="../front/editar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
     </div>
 
@@ -147,15 +147,15 @@
   </footer><!-- End  Footer -->
 
   <!-- Vendor JS Files -->
-  <script src="../front/listar/vendor/aos/aos.js"></script>
-  <script src="../front/listar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="../front/listar/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="../front/listar/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="../front/listar/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="../front/listar/vendor/php-email-form/validate.js"></script>
+  <script src="../front/editar/vendor/aos/aos.js"></script>
+  <script src="../front/editar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="../front/editar/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="../front/editar/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="../front/editar/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="../front/editar/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="../front/listar/js/main.js"></script>
+  <script src="../front/editar/js/main.js"></script>
 
 
 <script>

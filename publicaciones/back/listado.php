@@ -1,10 +1,13 @@
+<?php
+include('../../base de datos/sesiones.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Instalaciones</title>
+  <title>Publicaciones</title>
 
 
   <!-- Favicons -->
@@ -65,9 +68,20 @@
 <section id="hero" class="d-flex justify-content-center align-items-center position-relative">
     <!-- Botones siempre en la parte superior de la sección de héroe -->
     <div class="fixed-buttons">
-      <a href="" class="btn-back">
+    <?php
+    if($_SESSION['usuario'] == 'administracion@gmail.com'){
+        echo '<a href="../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
-      </a>
+      </a>';
+    }else{
+        echo '<a href="../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
+        <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
+      </a>';
+    }
+    ?>
+      <!-- <a href="" class="btn-back">
+        <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
+      </a> -->
 
       <a href="cerrar_sesion.php" class="logout-button">
         <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
