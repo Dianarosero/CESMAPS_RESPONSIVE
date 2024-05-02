@@ -211,6 +211,24 @@ if (isset($_SESSION['mensaje'])) {
       });
     });
   </script>
-</body>
 
+<!-- banner flotante -->
+<div class="floating-banner" id="floatingBanner">
+  <button id="toggleButton" onclick="toggleBanner()" class="rounded-circle btn-primary">
+    <i class="bi bi-bell"></i>
+  </button>
+  <div class="banner-content">
+    <img src="../front/inicio/img/flavicon-01.png" alt="">
+  </div>
+</div>
+
+<Script>
+function toggleBanner() {
+  var bannerContent = document.querySelector('.banner-content');
+  bannerContent.classList.toggle('hidden');
+}
+
+</Script>
+
+</body>
 </html>

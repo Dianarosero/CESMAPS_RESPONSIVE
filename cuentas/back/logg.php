@@ -157,9 +157,9 @@ if (isset($_SESSION['mensaje'])) {
   <div class="floating-banner" id="floatingBanner">
     <button id="toggleButton" onclick="toggleBanner()">Mostrar / Ocultar</button>
     <div class="banner-content">
-    <img src="../front/inicio/img/flavicon-01.png" alt="">
+      <img src="../front/inicio/img/flavicon-01.png" alt="">
     </div>
-</div>
+  </div>
 
 </body>
 
