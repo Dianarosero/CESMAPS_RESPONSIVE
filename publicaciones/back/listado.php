@@ -60,10 +60,6 @@ include('../../base de datos/sesiones.php');
 </head>
 
 <body>
-
-
-  
-
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex justify-content-center align-items-center position-relative">
     <!-- Botones siempre en la parte superior de la sección de héroe -->
