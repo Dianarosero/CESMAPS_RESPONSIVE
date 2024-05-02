@@ -94,7 +94,7 @@
             // Incluir el archivo de conexión a la base de datos
             include("../../../base de datos/con_db.php");
 
-            // Realizar la consulta para obtener las Punto
+            // Realizar la consulta para obtener los puntos
             $sql = "SELECT * FROM puntos";
             $result = $conex->query($sql);
 
@@ -111,7 +111,7 @@
                 echo '</a>';
               }
             } else {
-              // Si no hay Punto en la base de datos, mostrar un mensaje
+              // Si no hay puntos en la base de datos, mostrar un mensaje
               echo "<p>No se encontraron puntos.</p>";
             }
 
@@ -140,6 +140,7 @@
   <script src="../front/listar/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="../front/listar/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../front/listar/vendor/php-email-form/validate.js"></script>
+  <script src="../front/listar/js/swiper.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../front/listar/js/main.js"></script>
