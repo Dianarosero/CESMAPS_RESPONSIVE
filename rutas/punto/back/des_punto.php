@@ -42,14 +42,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $descripcion_error = "Por favor, ingresa una descripción.";
     }
 
-    // Validar la imagen
-    if ($_FILES['imagen']['error'] == UPLOAD_ERR_NO_FILE) {
-        $imagen_error = "Por favor, selecciona una imagen.";
-    } else {
-        $foto = $_FILES['imagen']['name'];
-        $imagen_temporal=$_FILES['imagen']['tmp_name'];
-        $ruta_imagen = "Puntos/".$foto;
-    }
+    $nombre = $_POST['nombre_punto'];
+    $descripcion = $_POST['descripcion'];
+
+    $foto = $_FILES['imagen']['name'];
+    $imagen_temporal=$_FILES['imagen']['tmp_name'];
+    $ruta_imagen = "Puntos/".$foto;
 
     // Si no hay errores, proceder con la inserción de datos
     if (empty($nombre_error) && empty($instalacion_error) && empty($descripcion_error) && empty($imagen_error)) {

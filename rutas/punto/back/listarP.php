@@ -94,7 +94,7 @@
             // Incluir el archivo de conexión a la base de datos
             include("../../../base de datos/con_db.php");
 
-            // Realizar la consulta para obtener los puntos
+            // Realizar la consulta para obtener las instalaciones
             $sql = "SELECT * FROM puntos";
             $result = $conex->query($sql);
 
@@ -140,7 +140,6 @@
   <script src="../front/listar/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="../front/listar/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="../front/listar/vendor/php-email-form/validate.js"></script>
-  <script src="../front/listar/js/swiper.js"></script>
 
   <!-- Template Main JS File -->
   <script src="../front/listar/js/main.js"></script>
