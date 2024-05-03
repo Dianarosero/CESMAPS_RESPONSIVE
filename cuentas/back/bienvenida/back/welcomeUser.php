@@ -109,7 +109,29 @@
                   
                 </div>
               </div>
-  
+
+<!-- Banner -->
+<div class="banner-container">
+  <img id="responsive-banner" src="https://as1.ftcdn.net/v2/jpg/04/73/15/88/1000_F_473158862_4sY6hRueMurQ18pLdwfGZUzAfMJgcQ3G.jpg" alt="Banner">
+</div>
+
+<script>
+  // Obtener el ancho de la ventana y restar 2 píxeles
+  function setBannerWidth() {
+    var windowWidth = window.innerWidth;
+    var banner = document.getElementById("responsive-banner");
+    var bannerWidth = windowWidth - 2;
+    banner.style.maxWidth = bannerWidth + "px";
+  }
+
+  // Llamar a la función cuando se carga la página y cuando se redimensiona la ventana
+  window.onload = setBannerWidth;
+  window.onresize = setBannerWidth;
+</script>
+
+
+
+
               <div class="credits-container" style="text-align: center;">
                 Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
               </div>

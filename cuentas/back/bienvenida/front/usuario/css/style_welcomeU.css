@@ -320,3 +320,21 @@ h6 {
 .btn-primary:active {
   transform: scale(1.05);
 }
+
+.banner-container {
+  text-align: center; /* Centra el contenido del banner horizontalmente */
+  margin-top: 20px; /* Ajusta el margen superior para separarlo del footer */
+}
+
+.banner-container img {
+  max-width: calc(100vw - 2px); /* Calcula el ancho máximo del banner restando 2 píxeles al ancho de la ventana */
+  height: auto; /* Permite que la altura se ajuste automáticamente según el ancho */
+  max-height: 200px; /* Establece una altura máxima para el banner para controlar su tamaño en pantallas pequeñas */
+}
+
+@media (max-width: 768px) {
+  .banner-container img {
+    max-width: calc(100vw - 2px); /* Redefine el ancho máximo del banner en dispositivos pequeños */
+    max-height: 150px; /* Reduzca la altura máxima en pantallas más pequeñas si es necesario */
+  }
+}
