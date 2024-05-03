@@ -151,7 +151,6 @@ if (isset($_SESSION['mensaje'])) {
 
   <!-- Template Main JS File -->
   <script src="../front/inicio/js/main.js"></script>
-  <script src="../front/inicio/js/min-max.js"></script>
 
 <!-- Botón flotante -->
 <button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
