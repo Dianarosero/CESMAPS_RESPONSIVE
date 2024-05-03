@@ -151,10 +151,18 @@ if (isset($_SESSION['mensaje'])) {
         
       ?>
         
-
-  <a href="visualizarInf.php" class="btn-back">
-    <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
-  </a>
+<?php
+    if($_SESSION['usuario'] == 'administracion@gmail.com'){
+        echo '<a href="../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
+        <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
+      </a>';
+    }else{
+        echo '<a href="../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
+        <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
+      </a>';
+    }
+?>
+  
 
   <main>
     <div class="container">

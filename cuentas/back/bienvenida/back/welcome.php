@@ -110,16 +110,13 @@
                   
                   <div class="row justify-content-center text-center">
                     <div class="col-md-4 mb-3">
-                      <button type="button" class="btn btn-secondary btn-md dropdown-toggle" data-bs-toggle="dropdown">
-                        Buscar ruta&nbsp;&nbsp;&nbsp;
-                      </button>
-                      <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="../../../../rutas/ruta/back/buscar.php">Buscar Ruta</a></li>
-                      </ul>
+                    <a class="btn btn-secondary btn-md" href="../../../../rutas/ruta/back/buscar.php">
+                        Buscar ruta
+                      </a>
                     </div>
                     <div class="col-md-4 mb-3">
                       <button type="button" class="btn btn-secondary btn-md dropdown-toggle" data-bs-toggle="dropdown">
-                        Visualizar Info&nbsp;&nbsp;&nbsp;
+                        Info.personal&nbsp;&nbsp;&nbsp;
                       </button>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../../visualizarInf.php">Visualizar Datos</a></li>
@@ -131,8 +128,8 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../../../../publicaciones/back/publicar.php">Publicar</a></li>
-                        <li><a class="dropdown-item" href="editar.php">Editar</a></li>
-                        <li><a class="dropdown-item" href="listar.php">Listar</a></li>
+                        <li><a class="dropdown-item" href="../../../../publicaciones/back/editar.php">Editar</a></li>
+                        <li><a class="dropdown-item" href="../../../../publicaciones/back/listado.php">Listar</a></li>
                       </ul>
                     </div>
                   </div>
