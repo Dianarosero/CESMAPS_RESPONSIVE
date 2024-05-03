@@ -1,3 +1,6 @@
+<?php
+include("../../../base de datos/sesiones.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -64,10 +67,19 @@
 <!-- ======= Hero Section ======= -->
 <section id="hero" class="d-flex justify-content-center align-items-center position-relative">
     <!-- Botones siempre en la parte superior de la sección de héroe -->
+
     <div class="fixed-buttons">
-      <a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
+    <?php
+    if($_SESSION['usuario'] == 'administracion@gmail.com'){
+        echo '<a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
-      </a>
+      </a>';
+    }else{
+        echo '<a href="../../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
+        <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
+      </a>';
+    }
+?>
 
       <a href="../../../index.html" class="logout-button">
         <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">

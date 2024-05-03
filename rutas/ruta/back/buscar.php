@@ -1,3 +1,7 @@
+<?php
+include("../../../base de datos/sesiones.php");
+include("../../../base de datos/con_db.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,10 +26,17 @@
 
 <body>
 
-  <a href="../../../index.html" class="btn-back">
-    <img src="../front/buscar/img/volver-01-01-01.png" alt="Volver">
-  </a>
-
+<?php
+    if($_SESSION['usuario'] == 'administracion@gmail.com'){
+        echo '<a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
+        <img src="../front/buscar/img/volver-01-01-01.png" alt="Volver">
+      </a>';
+    }else{
+        echo '<a href="../../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
+        <img src="../front/buscar/img/volver-01-01-01.png" alt="Volver">
+      </a>';
+    }
+?>
   <main>
     <div class="container">
 

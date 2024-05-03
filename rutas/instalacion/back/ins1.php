@@ -44,7 +44,7 @@ $conex->close();
     border: none; /* Quita cualquier borde del botón */
     padding: 0; /* Quita cualquier relleno del botón */
   }
-
+<<<<
   /* Estilo para las imágenes en los botones */
   .btn-back img,
   .logout-button img {
