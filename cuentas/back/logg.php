@@ -153,14 +153,24 @@ if (isset($_SESSION['mensaje'])) {
   <script src="../front/inicio/js/main.js"></script>
   <script src="../front/inicio/js/min-max.js"></script>
 
-    <!-- banner flotante -->
-  <div class="floating-banner" id="floatingBanner">
-    <button id="toggleButton" onclick="toggleBanner()">Mostrar / Ocultar</button>
-    <div class="banner-content">
-      <img src="../front/inicio/img/flavicon-01.png" alt="">
-    </div>
-  </div>
+<!-- Botón flotante -->
+<button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
+  <i class="bi bi-bell" style="font-size: 24px;"></i>
+</button>
 
+<!-- Contenedor del banner flotante (inicialmente visible) -->
+<div class="floating-banner" id="floatingBanner">
+  <div class="banner-content">
+    <img src="../front/inicio/img/flavicon-01.png" alt="">
+  </div>
+</div>
+
+<Script>
+function toggleBanner() {
+  var banner = document.querySelector('.floating-banner');
+  banner.classList.toggle('hidden');
+}
+</Script>
 </body>
 
 </html>

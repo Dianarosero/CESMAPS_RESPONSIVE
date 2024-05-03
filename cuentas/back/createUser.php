@@ -172,7 +172,7 @@ if (isset($_SESSION['mensaje'])) {
       </section>
     </div>
   </main>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  
   <!-- Vendor JS Files -->
   <script src="../front/registro/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="../front/registro/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -212,11 +212,13 @@ if (isset($_SESSION['mensaje'])) {
     });
   </script>
 
-<!-- banner flotante -->
+<!-- Botón flotante -->
+<button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
+  <i class="bi bi-bell" style="font-size: 24px;"></i>
+</button>
+
+<!-- Contenedor del banner flotante (inicialmente visible) -->
 <div class="floating-banner" id="floatingBanner">
-  <button id="toggleButton" onclick="toggleBanner()" class="rounded-circle btn-primary">
-    <i class="bi bi-bell"></i>
-  </button>
   <div class="banner-content">
     <img src="../front/inicio/img/flavicon-01.png" alt="">
   </div>
@@ -224,11 +226,9 @@ if (isset($_SESSION['mensaje'])) {
 
 <Script>
 function toggleBanner() {
-  var bannerContent = document.querySelector('.banner-content');
-  bannerContent.classList.toggle('hidden');
+  var banner = document.querySelector('.floating-banner');
+  banner.classList.toggle('hidden');
 }
-
 </Script>
-
 </body>
 </html>

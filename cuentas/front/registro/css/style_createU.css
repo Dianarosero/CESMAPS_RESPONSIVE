@@ -316,6 +316,18 @@ h6 {
   transform: scale(1.05);
 }
 
+/* Estilos para el botón flotante */
+.floating-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999; /* Asegura que esté por encima de otros elementos */
+  font-size: 24px; /* Tamaño del icono del botón */
+  width: 50px; /* Ancho del botón */
+  height: 50px; /* Altura del botón */
+  line-height: 50px; /* Alineación vertical del contenido */
+}
+
 /* Estilos base para el floating banner */
 .floating-banner {
   position: fixed;
@@ -350,7 +362,6 @@ h6 {
 
 /* Clase para ocultar el contenido del banner */
 .hidden {
-  display: none;
+  opacity: 0;
+  pointer-events: none;
 }
-
-
