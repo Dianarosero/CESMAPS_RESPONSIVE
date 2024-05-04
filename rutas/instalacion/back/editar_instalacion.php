@@ -49,28 +49,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
       }
 
-        // Verificar si se ha cargado una nueva imagen
+        // Verificar si se ha cargado una nueva foto
         if (!empty($_FILES["foto"]["name"])) {
             // Directorio donde se guardarán las imágenes
             $directorio_destino = "Instalaciones/";
 
-            // Generar un nombre único para la imagen
+            // Generar un nombre único para la foto
             $nombre_archivo = uniqid() . '_' . $_FILES["foto"]["name"];
 
-            // Ruta completa de destino para la imagen
+            // Ruta completa de destino para la foto
             $ruta_destino = $directorio_destino . $nombre_archivo;
 
-            // Mover la imagen al directorio de destino
-            if (move_uploaded_file($_FILES["foto"]["name"], $ruta_destino)) {
-                // Actualizar la URL de la imagen en la base de datos
-                  $url_imagen = "Instalaciones/" . $nombre_archivo;
-                  $query_update_imagen = "UPDATE instalaciones SET foto='$url_imagen' WHERE id='$id_instalacion'";
-                  mysqli_query($conex, $query_update_imagen) or die(mysqli_error($conex));
-
+            // Mover la foto al directorio de destino
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta_destino)) {
+                // Verificar si la foto se movió correctamente
+                if (file_exists($ruta_destino)) {
+                    // Actualizar la URL de la foto en la base de datos
+                    $url_foto = "Instalaciones/" . $nombre_archivo;
+                    $query_update_foto = "UPDATE instalaciones SET foto='$url_foto' WHERE id='$id_instalacion'";
+                    mysqli_query($conex, $query_update_foto) or die(mysqli_error($conex));
+                } else {
+                    echo "Error: No se pudo mover la foto al directorio de destino.";
+                }
             } else {
-                // Error al mover la imagen, manejar según sea necesario
-                echo "Error al subir la imagen.";
+                // Error al mover la foto, manejar según sea necesario
+                echo "Error al subir la foto.";
             }
+            
+            
         }
 
 }
@@ -138,7 +144,9 @@ mysqli_close($conex);
                                 <div class="card-body">
 
                                     <div class="pt-4 pb-2">
-                                        <h5 class="card-title text-center pb-0 fs-4">Editar Instalación</h5>
+                                        <h5 class="card-title text-center pb-
+
+0 fs-4">Editar Instalación</h5>
                                     </div>
 
                                     <form class="needs-validation" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
@@ -166,9 +174,9 @@ mysqli_close($conex);
                                         </div>
 
                                         <div class="mb-4">
-                                            <!-- Input para seleccionar la nueva imagen -->
-                                            <label for="imagen" class="form-label">Seleccionar Imagen</label>
-                                            <input type="file" name="imagen" class="form-control" id="imagen" required>
+                                            <!-- Input para seleccionar la nueva foto -->
+                                            <label for="foto" class="form-label">Seleccionar Foto</label>
+                                            <input type="file" name="foto" class="form-control" id="foto" required>
                                         </div>
 
                                         <div class="col-12 mt-4">
@@ -218,3 +226,4 @@ mysqli_close($conex);
 </body>
 
 </html>
+```
