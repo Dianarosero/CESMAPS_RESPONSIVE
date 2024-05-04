@@ -44,7 +44,7 @@ $conex->close();
     border: none; /* Quita cualquier borde del botón */
     padding: 0; /* Quita cualquier relleno del botón */
   }
-<<<<
+
   /* Estilo para las imágenes en los botones */
   .btn-back img,
   .logout-button img {
@@ -62,6 +62,10 @@ $conex->close();
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+    /* Agregar espacio entre los icon-boxes de arriba y los de abajo */
+    #icon-boxes {
+      margin-bottom: 50px;
     }
   </style>
 </head>
