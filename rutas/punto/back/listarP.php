@@ -1,4 +1,5 @@
 <?php
+include("../../../base de datos/con_db.php");
 include("../../../base de datos/sesiones.php");
 ?>
 <!DOCTYPE html>
@@ -7,7 +8,7 @@ include("../../../base de datos/sesiones.php");
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Punto</title>
+  <title>Puntos</title>
 
   <!-- Favicons -->
   <link href="../front/listar/img/flavicon-01.png" rel="icon">
@@ -90,8 +91,8 @@ include("../../../base de datos/sesiones.php");
       <!-- Slide 1 -->
       <div class="carousel-item active">
         <div class="carousel-container">
-          <h2 class="animate__animated animate__fadeInDown">Punto<span></span></h2>
-          <p class="animate__animated animate__fadeInUp">Aquí se visualizarán los puntos que se encuentran en nuestra universidad</p>
+          <h2 class="animate__animated animate__fadeInDown">Puntos<span></span></h2>
+          <p class="animate__animated animate__fadeInUp">Aquí se visualizarán los Puntos que se encuentran en nuestra universidad</p>
         </div>
       </div>
     </div>
@@ -103,8 +104,6 @@ include("../../../base de datos/sesiones.php");
       <div class="container">
         <div class="row">
           <?php
-            // Incluir el archivo de conexión a la base de datos
-            include("../../../base de datos/con_db.php");
 
             // Realizar la consulta para obtener las instalaciones
             $sql = "SELECT * FROM puntos";
