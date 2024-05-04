@@ -1,3 +1,92 @@
+<?php
+include("../../../base de datos/sesiones.php");
+include("../../../base de datos/con_db.php");
+
+// Realizar una consulta para obtener todos los puntos
+$query_puntos = "SELECT id, nombre, descripcion, foto, id_instalacion FROM puntos";
+$resultado_puntos = mysqli_query($conex, $query_puntos);
+
+// Verificar si hay resultados
+if (mysqli_num_rows($resultado_puntos) > 0) {
+    // Crear un array para almacenar las opciones del combo box
+    $opciones_puntos = array();
+    while ($fila = mysqli_fetch_assoc($resultado_puntos)) {
+        // Agregar cada punto como una opción en el combo box
+        $opciones_puntos[$fila['id']] = array(
+            'nombre' => $fila['nombre'],
+            'descripcion' => $fila['descripcion'],
+            'foto' => $fila['foto'],
+            'id_instalacion' => $fila['id_instalacion']
+        );
+    }
+}
+
+// Variables para almacenar los valores originales
+$nombre_original = "";
+$descripcion_original = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Verificar si se ha seleccionado un punto para editar
+    if (!empty($_POST["nombre_punto"])) {
+        // Obtener el ID del punto seleccionado
+        $id_punto = $_POST["nombre_punto"];
+        // Obtener los valores originales del punto seleccionado
+        $nombre_original = $opciones_puntos[$id_punto]['nombre'];
+        $descripcion_original = $opciones_puntos[$id_punto]['descripcion'];
+
+        // Verificar si ha habido cambios en el nombre o descripción
+        if ($_POST["nombre_nuevo"] != $nombre_original || $_POST["descripcion_nueva"] != $descripcion_original) {
+            // Obtener el nuevo nombre del punto
+            $nombre_nuevo = $_POST["nombre_nuevo"];
+
+            // Verificar si el nuevo nombre ya existe en otra fila de la tabla
+            $query_nombre_existente = "SELECT COUNT(*) as count FROM puntos WHERE nombre='$nombre_nuevo' AND id != '$id_punto'";
+            $resultado_nombre_existente = mysqli_query($conex, $query_nombre_existente);
+            $fila_nombre_existente = mysqli_fetch_assoc($resultado_nombre_existente);
+            $count_nombre_existente = $fila_nombre_existente['count'];
+
+            if ($count_nombre_existente == 0) {
+                // No hay otro registro con el mismo nombre, podemos proceder con la actualización
+                $descripcion_nueva = $_POST["descripcion_nueva"];
+                $query_update = "UPDATE puntos SET nombre='$nombre_nuevo', descripcion='$descripcion_nueva' WHERE id='$id_punto'";
+                mysqli_query($conex, $query_update);
+            }
+        }
+    }
+
+    // Verificar si se ha cargado una nueva foto
+    if (!empty($_FILES["foto"]["name"])) {
+        // Directorio donde se guardarán las imágenes
+        $directorio_destino = "Puntos/";
+
+        // Generar un nombre único para la foto
+        $nombre_archivo = uniqid() . '_' . $_FILES["foto"]["name"];
+
+        // Ruta completa de destino para la foto
+        $ruta_destino = $directorio_destino . $nombre_archivo;
+
+        // Mover la foto al directorio de destino
+        if (move_uploaded_file($_FILES["foto"]["tmp_name"], $ruta_destino)) {
+            // Verificar si la foto se movió correctamente
+            if (file_exists($ruta_destino)) {
+                // Actualizar la URL de la foto en la base de datos
+                $url_foto = "Puntos/" . $nombre_archivo;
+                $query_update_foto = "UPDATE puntos SET foto='$url_foto' WHERE id='$id_punto'";
+                mysqli_query($conex, $query_update_foto) or die(mysqli_error($conex));
+            } else {
+                echo "Error: No se pudo mover la foto al directorio de destino.";
+            }
+        } else {
+            // Error al mover la foto, manejar según sea necesario
+            echo "Error al subir la foto.";
+        }
+    }
+}
+
+// Cerrar la conexión
+mysqli_close($conex);
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,19 +117,6 @@
 </head>
 
 <body>
-
-  
-  <!-- JavaScript para mostrar la ventana emergente -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      var puntoSeleccionado = prompt("Ingrese el punto que desea editar:");
-      if (puntoSeleccionado != null) {
-        // Establecer el punto seleccionado en el label azul
-        document.getElementById("nombre_instalacion").value = puntoSeleccionado;
-      }
-    });
-  </script>
-
   <a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
     <img src="../front/editar/img/volver-01-01-01.png" alt="Volver">
   </a>
@@ -68,34 +144,42 @@
                     <h5 class="card-title text-center pb-0 fs-4">Editar Punto</h5>
                   </div>
 
-                  <form class="needs-validation" method="POST" action="tu_archivo_php.php" enctype="multipart/form-data">
+                  <form class="needs-validation" method="POST" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
                     <div class="mb-4">
-                      <select name="nombre_punto" class="form-select" id="nombre_instalacion" required>
-                        <option value="San Francisco">San Francisco</option>
-                        <option value="Otro punto">Otro punto</option>
-                        <!-- Agregar más opciones según sea necesario -->
-                      </select>
+                    <!-- Combo box para seleccionar punto -->
+                    <select name="nombre_punto" class="form-control" id="nombre_instalacion" required>
+                        <option value="">Seleccionar Punto</option>
+                        <?php
+                        // Mostrar las opciones del combo box
+                        foreach ($opciones_puntos as $id => $punto) {
+                            echo "<option value=\"$id\">" . $punto['nombre'] . "</option>";
+                        }
+                        ?>
+                    </select>
+
                     </div>
 
-                    <div class="mb-4">
-                      <label for="descripcion" class="form-label">Descripción</label>
-                      <textarea name="descripcion" class="form-control" id="descripcion" rows="3" required>Es el bloque con mayor capacidad al contar con 6 pisos con salones de clases y modernas aulas de informática y salas Mac fue inaugurado en diciembre del 2012. Podemos ubicarla de varias maneras la primer ingresado por la parte del colegio maría Goretti, también entrado por la entrada principal de la universidad y por el Edificio Holanda cuando entramos tendremos que subir al 3 o 4 piso estas cuentas con unas intercepciones que nos llevaran al Edificio San Francisco</textarea>
-                    </div>
-
-                    <div class="mb-4">
-                      <label for="imagen" class="form-label">Seleccionar Imagen</label>
-                      <input type="file" name="imagen" class="form-control" id="imagen" required>
-                    </div>
-
-                    <div class="col-12 mt-4">
-                      <button class="btn btn-primary w-100" type="button" onclick="mostrarVentanaEmergente()">Editar</button>
-                    </div>
-
-                  </form>
-
-                </div>
+              <div class="mb-4">
+                  <!-- Input para el nuevo nombre -->
+                  <input type="text" name="nombre_nuevo" class="form-control" id="nombre_nuevo" placeholder="Nuevo Nombre" required>
               </div>
 
+              <div class="mb-4">
+                  <!-- Text area para la nueva descripción -->
+                  <textarea name="descripcion_nueva" class="form-control" id="descripcion_nueva" rows="3" placeholder="Nueva Descripción" required></textarea>
+              </div>
+
+              <div class="mb-4">
+                  <!-- Input para seleccionar la nueva foto -->
+                  <label for="foto" class="form-label">Seleccionar Foto</label>
+                  <input type="file" name="foto" class="form-control" id="foto" required>
+              </div>
+
+              <div class="col-12 mt-4">
+                  <!-- Botón para editar -->
+                  <button class="btn btn-primary w-100" type="submit" name="editarBtn">Editar</button>
+              </div>
+    
               <div class="credits-container" style="text-align: center;">
                 Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
               </div>
@@ -118,6 +202,23 @@
 
   <!-- Vendor JS Files -->
   <script src="../front/editar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Verificar si el punto se ha editado correctamente
+    <?php if ($_SERVER["REQUEST_METHOD"] == "POST") { ?>
+        <?php if (!empty($_POST["nombre_punto"])) { ?>
+            <?php if ($_POST["nombre_nuevo"] != $nombre_original || $_POST["descripcion_nueva"] != $descripcion_original) { ?>
+                <?php if ($count_nombre_existente == 0) { ?>
+                    // Mostrar alerta de éxito si el punto se ha editado correctamente
+                    alert("El punto se ha editado correctamente.");
+                <?php } else { ?>
+                    // Mostrar alerta de error si el nuevo nombre ya está en uso
+                    alert("Error: El nuevo nombre ya está en uso.");
+                <?php } ?>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+</script>
 
 </body>
 
