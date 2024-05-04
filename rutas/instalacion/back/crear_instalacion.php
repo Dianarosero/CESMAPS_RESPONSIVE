@@ -1,21 +1,6 @@
 <?php
-// Iniciar la sesión
-session_start();
-
-// Verificar si el usuario ha iniciado sesión
-if (!isset($_SESSION['usuario'])) {
-    // Redirigir al usuario a la página de inicio de sesión si no ha iniciado sesión
-    header("Location: CESMAPS_RESPONSIVE/cuentas/back/bienvenida/back/welcome.php");
-    exit;
-}
-
-// Establecer la conexión con la base de datos
-$conex = mysqli_connect("localhost", "root", "", "cesmaps");
-
-// Verificar la conexión
-if (!$conex) {
-    die("La conexión a la base de datos ha fallado: " . mysqli_connect_error());
-}
+include("../../../base de datos/sesiones.php");
+include("../../../base de datos/con_db.php");
 
 // Verificar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -46,9 +31,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Ejecutar la consulta de inserción y verificar si fue exitosa
             if (mysqli_query($conex, $consulta_insertar)) {
-                echo "<script>alert('Los datos se han insertado correctamente.')</script>";
+                echo "<script>alert('Instalación creada exitosamente.')</script>";
             } else {
-                echo "<script>alert('Error al insertar los datos: " . mysqli_error($conex) . "')</script>";
+                echo "<script>alert('No se ha podido crear la instalación: " . mysqli_error($conex) . "')</script>";
             }
         }
     }
@@ -76,9 +61,17 @@ mysqli_close($conex);
     <link href="../front/crear/css/style_crearI.css" rel="stylesheet">
 </head>
 <body>
-    <a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
-        <img src="../front/crear/img/volver-01-01-01.png" alt="Volver">
-    </a>
+            <?php
+                if($_SESSION['usuario'] == 'administracion@gmail.com'){
+                    echo '<a href="../../../cuentas/back/bienvenida/back/welcome.php" class="btn-back">
+                    <img src="../front/crear/img/volver-01-01-01.png" alt="Volver">
+                </a>';
+                }else{
+                    echo '<a href="../../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
+                    <img src="../front/crear/img/volver-01-01-01.png" alt="Volver">
+                </a>';
+                }
+            ?>
     <main>
         <div class="container">
             <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">

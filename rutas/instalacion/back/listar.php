@@ -1,7 +1,9 @@
 <?php
 include("../../../base de datos/sesiones.php");
+include("../../../base de datos/con_db.php");
+// Cerrar la conexión
+mysqli_close($conex);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 
