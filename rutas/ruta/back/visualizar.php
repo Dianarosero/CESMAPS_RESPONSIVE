@@ -7,34 +7,26 @@ $puntoPartida = $_POST['punto_partida'];
 $puntoDestino = $_POST['punto_destino'];
 
 // Consulta SQL para obtener el ID del punto de partida
-$query_punto_partida = "SELECT id FROM puntos WHERE nombre = '$puntoPartida'";
+$query_punto_partida = "SELECT id, nombre FROM puntos WHERE nombre = '$puntoPartida'";
 $result_punto_partida = mysqli_query($conex, $query_punto_partida);
 $row_punto_partida = mysqli_fetch_assoc($result_punto_partida);
 $id_punto_partida = $row_punto_partida['id'];
 
 // Consulta SQL para obtener el ID del punto de destino
-$query_punto_destino = "SELECT id FROM puntos WHERE nombre = '$puntoDestino'";
+$query_punto_destino = "SELECT id, nombre FROM puntos WHERE nombre = '$puntoDestino'";
 $result_punto_destino = mysqli_query($conex, $query_punto_destino);
 $row_punto_destino = mysqli_fetch_assoc($result_punto_destino);
 $id_punto_destino = $row_punto_destino['id'];
 
-// Ahora $id_punto_partida y $id_punto_destino contienen los ID de los puntos de partida y destino respectivamente
+// Consulta SQL para obtener el ID de la ruta basada en los IDs de los puntos de inicio y destino
+$query_id_ruta = "SELECT id FROM rutas WHERE id_punto_ini = $id_punto_partida AND id_punto_fin = $id_punto_destino";
+$result_id_ruta = mysqli_query($conex, $query_id_ruta);
+$row_id_ruta = mysqli_fetch_assoc($result_id_ruta);
+$id_ruta = $row_id_ruta['id'];
 
 // Consulta SQL para obtener las rutas con el mismo punto de partida y destino
 $query_rutas = "SELECT * FROM rutas WHERE id_punto_ini = $id_punto_partida AND id_punto_fin = $id_punto_destino";
 $result_rutas = mysqli_query($conex, $query_rutas);
-// Verificar si se encontraron rutas
-if(mysqli_num_rows($result_rutas) > 0) {
-    // Se encontraron rutas
-    while($row_ruta = mysqli_fetch_assoc($result_rutas)) {
-        // Accede a los datos de la ruta aquí
-        $id_ruta = $row_ruta['id'];
-        // Otros datos de la ruta...
-    }
-} else {
-    // No se encontraron rutas
-    echo "No se encontraron rutas para el punto de partida y destino proporcionados.";
-}
 
 ?>
 
@@ -123,7 +115,7 @@ if(mysqli_num_rows($result_rutas) > 0) {
                               echo "<p>" . $row_ruta["descripcion"] . "</p>";
                           }
                       } else {
-                          echo "No se encontraron resultados para la ruta con ID: $ruta_id";
+                          echo "No se encontraron resultados para la ruta con ID: $id_ruta";
                       }
                       ?>
 
