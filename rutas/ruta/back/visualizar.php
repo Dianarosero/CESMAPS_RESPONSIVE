@@ -10,23 +10,25 @@ $puntoDestino = $_POST['punto_destino'];
 $query_punto_partida = "SELECT id, nombre FROM puntos WHERE nombre = '$puntoPartida'";
 $result_punto_partida = mysqli_query($conex, $query_punto_partida);
 $row_punto_partida = mysqli_fetch_assoc($result_punto_partida);
-$id_punto_partida = $row_punto_partida['id'];
+$id_punto_partida = ($row_punto_partida) ? $row_punto_partida['id'] : null; // Check if result exists
 
 // Consulta SQL para obtener el ID del punto de destino
 $query_punto_destino = "SELECT id, nombre FROM puntos WHERE nombre = '$puntoDestino'";
 $result_punto_destino = mysqli_query($conex, $query_punto_destino);
 $row_punto_destino = mysqli_fetch_assoc($result_punto_destino);
-$id_punto_destino = $row_punto_destino['id'];
+$id_punto_destino = ($row_punto_destino) ? $row_punto_destino['id'] : null; // Check if result exists
 
-// Consulta SQL para obtener el ID de la ruta basada en los IDs de los puntos de inicio y destino
-$query_id_ruta = "SELECT id FROM rutas WHERE id_punto_ini = $id_punto_partida AND id_punto_fin = $id_punto_destino";
-$result_id_ruta = mysqli_query($conex, $query_id_ruta);
-$row_id_ruta = mysqli_fetch_assoc($result_id_ruta);
-$id_ruta = $row_id_ruta['id'];
-
-// Consulta SQL para obtener las rutas con el mismo punto de partida y destino
-$query_rutas = "SELECT * FROM rutas WHERE id_punto_ini = $id_punto_partida AND id_punto_fin = $id_punto_destino";
-$result_rutas = mysqli_query($conex, $query_rutas);
+if ($id_punto_partida && $id_punto_destino) { 
+    // Consulta SQL para obtener las rutas con los puntos de inicio y destino existentes
+    $query_rutas = "SELECT r.*, id_punto_ini as punto_inicio_nombre, id_punto_fin as punto_fin_nombre 
+                    FROM rutas r 
+                    INNER JOIN puntos p_ini ON r.id_punto_ini = p_ini.id 
+                    INNER JOIN puntos p_fin ON r.id_punto_fin = p_fin.id 
+                    WHERE r.id_punto_ini = $id_punto_partida AND r.id_punto_fin = $id_punto_destino";
+    $result_rutas = mysqli_query($conex, $query_rutas);
+} else {
+    $result_rutas = null;
+}
 
 ?>
 
@@ -78,7 +80,7 @@ $result_rutas = mysqli_query($conex, $query_rutas);
 
             <nav class="navbar">
                 <div class="container-fluid">
-                    <a href="../index.html" class="logo"><img src="../front/recorrido/img/volver-01-01-01.png" alt="" class="img-fluid" style="width: 100%; max-width: 100px; height: auto; list-style-type: none;"></a>
+                    <a href="buscar.php" class="logo"><img src="../front/recorrido/img/volver-01-01-01.png" alt="" class="img-fluid" style="width: 100%; max-width: 100px; height: auto; list-style-type: none;"></a>
                     <ul class="navbar-nav">
                         <!-- Agrega más elementos de la barra de navegación aquí si es necesario -->
                     </ul>
@@ -105,20 +107,19 @@ $result_rutas = mysqli_query($conex, $query_rutas);
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
                     <?php
-                      // Verifica si se han encontrado resultados en la consulta de ruta
-                      if (mysqli_num_rows($result_rutas) > 0) {
-                          // Imprime los datos de la ruta en el HTML
-                          while ($row_ruta = mysqli_fetch_assoc($result_rutas)) {
-                              echo "<h2 data-aos='fade-down'>Ruta <br><span>" . $row_ruta["punto_inicio_nombre"] . " - " . $row_ruta["punto_fin_nombre"] . "</span></h2>";
-                              echo "<p data-aos='fade-up'>Tiempo estimado: " . $row_ruta["tiempo_estimado"] . " min</p>";
-                              echo "<img src='" . $row_ruta["ruta_foto"] . "' class='img-fluid' alt='foto' style='margin-top: 50px;'>";
-                              echo "<p>" . $row_ruta["descripcion"] . "</p>";
-                          }
-                      } else {
-                          echo "No se encontraron resultados para la ruta con ID: $id_ruta";
-                      }
-                      ?>
-
+                        // Verifica si se han encontrado resultados en la consulta de ruta
+                        if ($result_rutas && mysqli_num_rows($result_rutas) > 0) {
+                            // Imprime los datos de la ruta en el HTML
+                            while ($row_ruta = mysqli_fetch_assoc($result_rutas)) {
+                                echo "<h2 data-aos='fade-down'>Ruta <br><span>" . $row_ruta["punto_inicio_nombre"] . " - " . $row_ruta["punto_fin_nombre"] . "</span></h2>";
+                                echo "<p data-aos='fade-up'>Tiempo estimado: " . $row_ruta["tiempo_estimado"] . " min</p>";
+                                echo "<img src='" . $row_ruta["ruta_foto"] . "' class='img-fluid' alt='foto' style='margin-top: 50px;'>";
+                                echo "<p>" . $row_ruta["descripcion"] . "</p>";
+                            }
+                        } else {
+                            echo "No se encontraron resultados para la ruta con puntos de partida '$puntoPartida' y destino '$puntoDestino'";
+                        }
+                    ?>
                     </div>
                 </div>
             </div>
