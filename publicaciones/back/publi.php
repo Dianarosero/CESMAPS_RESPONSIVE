@@ -47,7 +47,7 @@
 <section id="hero" class="d-flex justify-content-center align-items-center position-relative">
     <!-- Botones siempre en la parte superior de la sección de héroe -->
     <div class="fixed-buttons">
-      <a href="" class="btn-back">
+      <a href="listado.php" class="btn-back">
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>
 

@@ -101,28 +101,47 @@ include('../../base de datos/sesiones.php');
       <div class="container">
         <div class="row">
 
-          <?php
-            // Conexión a la base de datos
-            include("../../base de datos/con_db.php");
-            // Consulta para obtener las publicaciones
-            $sql = "SELECT * FROM publicaciones WHERE estado = '0'";
-              $result = $conex->query($sql);
+        <?php
+// Conexión a la base de datos
+include("../../base de datos/con_db.php");
 
-              if ($result->num_rows > 0) {
-                // Mostrar datos en cada icon-box
-                while($row = $result->fetch_assoc()) {
-                    echo '<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
-                    echo '<div class="icon-box">';
-                    echo '<h4 class="title"><a href="publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">' . $row["titulo"] . '</a></h4>';
-                    echo '<img src="' . $row["archivo"] . '" style="max-width: 100%;">';
-                    echo '</div>';
-                    echo '</div>';
-                }
-              } else {
-                  echo "No se encontraron publicaciones.";
-              }
-              $conex->close();
-          ?>
+// Consulta para obtener las publicaciones
+$sql = "SELECT * FROM publicaciones WHERE estado = '0'";
+$result = $conex->query($sql);
+
+if ($result->num_rows > 0) {
+    // Mostrar datos en cada icon-box
+    while($row = $result->fetch_assoc()) {
+        echo '<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
+        echo '<div class="icon-box">';
+        echo '<h4 class="title"><a href="publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">' . $row["titulo"] . '</a></h4>';
+
+        // Verificar el tipo de archivo
+        $extension = pathinfo($row["ruta_archivo"], PATHINFO_EXTENSION);
+        if ($extension == "pdf") {
+            // Mostrar una imagen para los archivos PDF
+            echo '<img src="Publicaciones/pdf.png" alt="PDF"  style="max-width: 100%;">';
+        } elseif (in_array($extension, array("mp4", "avi", "mov", "webm"))) {
+            // Mostrar el video directamente si es un video
+            echo '<img src="Publicaciones/mp4.png" alt="Mp4"  style="max-width: 100%;">';
+        } elseif (in_array($extension, array("jpg", "jpeg", "png", "gif"))) {
+            // Mostrar la imagen directamente si es una imagen
+            echo '<img src="' . $row["ruta_archivo"] . '" style="max-width: 100%;">';
+        } else {
+            // Mostrar una imagen genérica si el tipo de archivo no es reconocido
+            echo '<img src="../front/listar/img/file_icon.png" alt="Archivo">';
+        }
+
+        echo '</div>';
+        echo '</div>';
+    }
+} else {
+    echo "No se encontraron publicaciones.";
+}
+
+$conex->close();
+?>
+
         </div>
       </div>
       

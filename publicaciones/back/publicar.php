@@ -68,7 +68,7 @@ if (isset($_SESSION['mensaje'])) {
                         <div class="invalid-feedback">Por favor, ingresa un punto de partida.</div>
                     </div>
                     <div class="mb-4">
-                        <label for="autor" class="form-label">Autor</label>
+                        <label for="autor" class="form-label">Publicado por</label>
                         <input type="text" name="autor" class="form-control" id="autor">
                     </div>
 
@@ -84,9 +84,9 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
 
                     <div class="mb-4">
-                      <label for="imagen" class="form-label">Insertar Imagen</label>
-                      <input type="file" name="archivo" class="form-control" id="imagen" required>
-                      <div class="invalid-feedback">Por favor, selecciona una imagen.</div>
+                      <label for="archivo" class="form-label">Insertar archivo</label>
+                      <input type="file" name="archivo" class="form-control" id="archivo" required>
+                      <div class="invalid-feedback">Por favor, inserta un archivo.</div>
                     </div>
 
                     <div class="mb-4">

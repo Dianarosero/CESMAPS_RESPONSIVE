@@ -42,14 +42,28 @@ if ($result_categoria && $result_categoria->num_rows > 0) {
 
 // Añadir archivo
 $nombre_archivo = $_FILES['archivo']['name'];
+$tipo_archivo = $_FILES["archivo"]["type"];
+$tamaño_archivo = $_FILES["archivo"]["size"];
 $archivo_temporal = $_FILES['archivo']['tmp_name'];
 $ruta_archivo = "Publicaciones/" . $nombre_archivo;
+
+// Inicializar ancho y alto
+$ancho = 0;
+$alto = 0;
+
+// Verificar si el archivo subido es una imagen
+$es_imagen = getimagesize($archivo_temporal);
+if ($es_imagen !== false) {
+    // Obtener las dimensiones de la imagen
+    $ancho = $es_imagen[0];
+    $alto = $es_imagen[1];
+}
 
 move_uploaded_file($archivo_temporal, $ruta_archivo);
 
 // Insertar datos en la tabla 'publicaciones'
-$sql = "INSERT INTO publicaciones (titulo, autor, contacto, descripcion, archivo, estado, id_categoria)
-        VALUES ('$titulo', '$autor', '$contacto', '$descripcion', '$ruta_archivo', '0', '$categoria_id')";
+$sql = "INSERT INTO publicaciones (titulo, autor, contacto, descripcion,tipo_archivo,ancho_archivo,alto_archivo,ruta_archivo, estado, id_categoria)
+        VALUES ('$titulo', '$autor', '$contacto', '$descripcion','$tipo_archivo','$ancho','$alto', '$ruta_archivo', '0', '$categoria_id')";
 
 if ($conex->query($sql) === TRUE) {
     session_start();
