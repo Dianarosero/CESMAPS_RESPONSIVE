@@ -1,4 +1,5 @@
 <?php
+include("../../../base de datos/con_db.php");
 // Definir variables para los mensajes de error
 $nombre_error = $instalacion_error = $descripcion_error = $imagen_error = "";
 
@@ -49,30 +50,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $imagen_temporal=$_FILES['imagen']['tmp_name'];
     $ruta_imagen = "Puntos/".$foto;
 
-    // Si no hay errores, proceder con la inserción de datos
-    if (empty($nombre_error) && empty($instalacion_error) && empty($descripcion_error) && empty($imagen_error)) {
-        // Establecer nuevamente la conexión a la base de datos
-        $conex = mysqli_connect("localhost", "root", "", "cesmaps");
-
-        // Verificar si la conexión fue exitosa
-        if (!$conex) {
-            die("Error al conectar a la base de datos: " . mysqli_connect_error());
-        }
-
-        // Mover la imagen al directorio de destino
-        if (move_uploaded_file($imagen_temporal,$ruta_imagen)) {
+    if (empty($nombre) || empty($descripcion) || empty($foto)) {
+      echo "<script>alert('Por favor, completa todos los campos y selecciona una imagen.')</script>";
+  } else {
+      $conex = mysqli_connect("localhost", "root", "", "cesmaps");
+      // Consulta para verificar si ya existe
+      $consulta_existencia = "SELECT * FROM puntos WHERE nombre = '$nombre'";
+      $resultado_existencia = mysqli_query($conex, $consulta_existencia);
+  
+      if (mysqli_num_rows($resultado_existencia) > 0) {
+          echo "<script>alert('El punto ya existe.')</script>";
+      } else {
+          // Mover la imagen cargada a una ubicación deseada
+          if (move_uploaded_file($imagen_temporal,$ruta_imagen)) {
             // Insertar los datos en la tabla de puntos
             $query = "INSERT INTO puntos (nombre,descripcion,foto,id_instalacion,id_sede) VALUES ('$nombre','$descripcion', '$ruta_imagen' ,'$instalacion','1')";
 
-            if (mysqli_query($conex, $query)) {
-                echo "<script>alert('Punto creado exitosamente');</script>";
-            } else {
-                echo "<script>alert('Error al crear el punto: " . mysqli_error($conex) . "');</script>";
-            }
-        } else {
-            echo "<script>alert('Error al subir la imagen.');</script>";
-        }
-
+          // Ejecutar la consulta de inserción y verificar si fue exitosa
+          if (mysqli_query($conex, $consulta_insertar)) {
+              echo "<script>alert('Punto creado exitosamente.')</script>";
+          } else {
+              echo "<script>alert('No se ha podido crear el punto: " . mysqli_error($conex) . "')</script>";
+          }
+      }
+  }
+  
         // Cerrar la conexión
         mysqli_close($conex);
     }

@@ -1,4 +1,5 @@
 <?php
+include("../../../base de datos/con_db.php");
 // Establecer la conexión a la base de datos (usando MySQLi)
 $conex = mysqli_connect("localhost", "root", "", "cesmaps") ;
 
