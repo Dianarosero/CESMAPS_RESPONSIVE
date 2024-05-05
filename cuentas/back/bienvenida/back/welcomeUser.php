@@ -112,25 +112,8 @@
 
 <!-- Banner -->
 <div class="banner-container">
-  <img id="responsive-banner" src="https://as1.ftcdn.net/v2/jpg/04/73/15/88/1000_F_473158862_4sY6hRueMurQ18pLdwfGZUzAfMJgcQ3G.jpg" alt="Banner">
+  <img id="responsive-banner" src="../front/usuario/img/horarios de Acompañamiento.png" alt="Banner">
 </div>
-
-<script>
-  // Obtener el ancho de la ventana y restar 2 píxeles
-  function setBannerWidth() {
-    var windowWidth = window.innerWidth;
-    var banner = document.getElementById("responsive-banner");
-    var bannerWidth = windowWidth - 2;
-    banner.style.maxWidth = bannerWidth + "px";
-  }
-
-  // Llamar a la función cuando se carga la página y cuando se redimensiona la ventana
-  window.onload = setBannerWidth;
-  window.onresize = setBannerWidth;
-</script>
-
-
-
 
               <div class="credits-container" style="text-align: center;">
                 Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
@@ -147,8 +130,6 @@
   <a href="../../../../base de datos/cerrar.php" class="logout-button">
     <img src="../front/usuario/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
   </a>
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="../front/usuario/vendor/apexcharts/apexcharts.min.js"></script>
