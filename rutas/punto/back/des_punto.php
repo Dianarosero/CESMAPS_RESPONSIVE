@@ -1,10 +1,11 @@
 <?php
 include("../../../base de datos/con_db.php");
+// Establecer la conexión a la base de datos (usando MySQLi)
+$conex = mysqli_connect("localhost", "root", "", "cesmaps");
 // Definir variables para los mensajes de error
 $nombre_error = $instalacion_error = $descripcion_error = $imagen_error = "";
 
-// Establecer la conexión a la base de datos (usando MySQLi)
-$conex = mysqli_connect("localhost", "root", "", "cesmaps");
+
 
 // Verificar si la conexión fue exitosa
 if (!$conex) {
@@ -67,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $query = "INSERT INTO puntos (nombre,descripcion,foto,id_instalacion,id_sede) VALUES ('$nombre','$descripcion', '$ruta_imagen' ,'$instalacion','1')";
 
           // Ejecutar la consulta de inserción y verificar si fue exitosa
-          if (mysqli_query($conex, $consulta_insertar)) {
+          if (mysqli_query($conex, $query)) {
               echo "<script>alert('Punto creado exitosamente.')</script>";
           } else {
               echo "<script>alert('No se ha podido crear el punto: " . mysqli_error($conex) . "')</script>";
