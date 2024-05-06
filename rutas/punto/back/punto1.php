@@ -30,6 +30,8 @@ $conex->close();
 <html lang="es">
 
 <head>
+    <link href="../front/listar/img/flavicon-01.png" rel="icon">
+    <link href="../front/listar/img/apple-touch-icon.png" rel="apple-touch-icon">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($titulo); ?></title>

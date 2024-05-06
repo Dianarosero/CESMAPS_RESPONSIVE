@@ -83,7 +83,7 @@ $tiempo = $row ['timpo_estimado'];
   <meta content="" name="description">
   <meta content="" name="keywords">
   <!-- Favicons -->
-  <link href="../front//recorrido/img/favicon.png" rel="icon">
+  <link href="../front/recorrido/img/flavicon-01.png" rel="icon">
   <link href="../front/recorrido/img/apple-touch-icon.png" rel="apple-touch-icon">
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
