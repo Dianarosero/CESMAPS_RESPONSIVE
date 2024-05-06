@@ -1,14 +1,9 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
 include("../../../base de datos/con_db.php");
+include("../../../base de datos/sesiones.php");
 
-// Verificar la sesión del usuario
-session_start();
-if(!isset($_SESSION['usuario'])) {
-    // Si el usuario no ha iniciado sesión, redirigirlo a la página de inicio de sesión
-    header("Location: login.php");
-    exit;
-}
+
 
 // Función para registrar la búsqueda en la base de datos
 function registrarBusqueda($idRuta, $idUsuario) {

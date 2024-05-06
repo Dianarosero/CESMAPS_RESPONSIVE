@@ -1,6 +1,8 @@
 <?php
 // Incluir el archivo de conexión a la base de datos
 include("../../../base de datos/con_db.php");
+include("../../../base de datos/sesiones.php");
+
 
 // Obtener los valores seleccionados del formulario
 $idPuntoPartida = $_POST['punto_partida'];
@@ -128,7 +130,12 @@ $tiempo = $row ['timpo_estimado'];
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6 text-center">
-            <h3 data-aos="fade-down">Ruta <br><span><?php echo $nombrePuntoPartida.'-'.$nombrePuntoDestino; ?></span></h3>
+            <style>
+            h2[data-aos="fade-down"] span {
+                    font-size: 50%; /* Puedes ajustar este valor según necesites */
+            }
+            </style>
+            <h2 data-aos="fade-down">Ruta <br><span><?php echo $nombrePuntoPartida.' - '.$nombrePuntoDestino; ?></span></h2>
             <p data-aos="fade-up">Tiempo estimado: <?php echo $tiempo;?> minutos.</p></h4>
           </div>
         </div>
