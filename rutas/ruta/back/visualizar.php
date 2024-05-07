@@ -34,15 +34,21 @@ mysqli_free_result($resultadoPuntoDestino);
 // Consulta SQL para obtener la información de la ruta
 $sql = "SELECT * FROM rutas WHERE id_punto_ini = $idPuntoPartida AND id_punto_fin = $idPuntoDestino";
 $result = $conex->query($sql);
+
 // Verificar si se encontraron resultados en la consulta
 if ($result->num_rows > 0) {
     // Obtener los datos de la ruta
     $row = $result->fetch_assoc();
-$imagen = $row['ruta_foto'];
-$descripcion = $row['descripcion'];
-$tiempo = $row ['timpo_estimado'];
+    $imagen = $row['ruta_foto'];
+    $descripcion = $row['descripcion'];
+    $tiempo = $row ['timpo_estimado'];
+} else {
+    // No se encontraron resultados, mostrar mensaje de error
+    echo "<script>alert('No se ha encontrado una ruta entre los puntos seleccionados.');</script>";
+    // Redirigir al usuario a la página anterior
+    echo "<script>window.history.go(-1);</script>";
+    exit; // Detener la ejecución del script
 }
-
 ?>
 
 <!DOCTYPE html>

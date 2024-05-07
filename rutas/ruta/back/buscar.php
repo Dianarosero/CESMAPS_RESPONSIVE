@@ -4,7 +4,6 @@ include("../../../base de datos/con_db.php");
 include("../../../base de datos/sesiones.php");
 
 
-
 // Función para registrar la búsqueda en la base de datos
 function registrarBusqueda($idRuta, $idUsuario) {
     global $conex;
@@ -16,6 +15,8 @@ function registrarBusqueda($idRuta, $idUsuario) {
         echo "Error al registrar la búsqueda: " . $conex->error;
     }
 }
+
+
 
 // Realizar la consulta para obtener los puntos disponibles
 $sql = "SELECT * FROM puntos";
