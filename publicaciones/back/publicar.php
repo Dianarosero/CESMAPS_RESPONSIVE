@@ -11,6 +11,7 @@ if (isset($_SESSION['mensaje'])) {
     unset($_SESSION['mensaje']);
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -78,15 +79,27 @@ if (isset($_SESSION['mensaje'])) {
                     </div>
 
                     <div class="mb-4">
-                      <label for="descripcion" class="form-label">Descripción</label>
-                      <textarea name="descripcion" class="form-control" id="descripcion" rows="3" required></textarea>
-                      <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
+                        <label for="descripcion" class="form-label">Descripción</label>
+                        <textarea name="descripcion" class="form-control" id="descripcion" rows="3" required></textarea>
+                        <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
                     </div>
 
                     <div class="mb-4">
                       <label for="archivo" class="form-label">Insertar archivo</label>
                       <input type="file" name="archivo" class="form-control" id="archivo" required>
                       <div class="invalid-feedback">Por favor, inserta un archivo.</div>
+                    </div>
+
+                    <div class="mb-4 d-flex justify-content-center align-items-center">
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="checkInsertarImagen">
+                            <label class="form-check-label" for="checkInsertarImagen">Insertar Imagen Interactiva</label>
+                        </div>
+                    </div>
+
+                    <div id="campoImagen" style="display: none;" class="mb-4">
+                        <label for="imagen" class="form-label">Imagen Interactiva</label>
+                        <input type="file" name="img_interactiva" class="form-control" id="imagen">
                     </div>
 
                     <div class="mb-4">
@@ -138,6 +151,15 @@ if (isset($_SESSION['mensaje'])) {
 
   <!-- Vendor JS Files -->
   <script src="../front/publicar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
+  <script>
+    document.getElementById('checkInsertarImagen').addEventListener('change', function() {
+        var campoImagen = document.getElementById('campoImagen');
+        campoImagen.style.display = this.checked ? 'block' : 'none';
+    });
+</script>
+
+
 
 </body>
 
