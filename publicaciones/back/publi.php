@@ -75,10 +75,11 @@
           </div>
         </div>
         <div class="row justify-content-center mt-4">
-          <div class="col-md-8">
-            <p name="descripcion"><?php echo htmlspecialchars($_GET['descripcion']); ?></p>
-          </div>
-        </div>
+    <div class="col-md-8">
+        <div><?php echo $_GET['descripcion']; ?></div>
+    </div>
+</div>
+
       </div>
     </section><!-- End Installation Info Section -->
 

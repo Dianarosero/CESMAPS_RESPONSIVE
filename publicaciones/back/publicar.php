@@ -32,6 +32,8 @@ if (isset($_SESSION['mensaje'])) {
 
   <!-- Template Main CSS File -->
   <link href="../front/publicar/css/style_publicar.css" rel="stylesheet">
+
+  <script src="https://cdn.tiny.cloud/1/r9f40c6dl05kco3atormqo0eun7ei74q1es5drt5kc9hrltv/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 </head>
 
 <body>
@@ -81,6 +83,18 @@ if (isset($_SESSION['mensaje'])) {
                     <div class="mb-4">
                         <label for="descripcion" class="form-label">Descripción</label>
                         <textarea name="descripcion" class="form-control" id="descripcion" rows="3" required></textarea>
+                        <script>
+                        tinymce.init({
+                            selector: 'textarea#descripcion',
+                            plugins: 'lists link',
+                            toolbar: 'undo redo | bold italic underline | bullist numlist | link',
+                            menubar: false,
+                            invalid_elements: 'script, i, button',
+                            content_css: 'https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/skins/content/default/content.min.css',
+                            branding: false
+                        });
+                    </script>
+                    
                         <div class="invalid-feedback">Por favor, ingresa una descripción.</div>
                     </div>
 
@@ -151,7 +165,7 @@ if (isset($_SESSION['mensaje'])) {
 
   <!-- Vendor JS Files -->
   <script src="../front/publicar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  
+
   <script>
     document.getElementById('checkInsertarImagen').addEventListener('change', function() {
         var campoImagen = document.getElementById('campoImagen');

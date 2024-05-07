@@ -112,8 +112,11 @@
 
 <!-- Banner -->
 <div class="banner-container">
-  <img id="responsive-banner" src="../front/usuario/img/horarios de Acompañamiento.png" alt="Banner">
+  <a href="ruta_del_archivo_destino.html">
+    <img id="responsive-banner" src="../front/usuario/img/horarios de Acompañamiento.png" alt="Banner">
+  </a>
 </div>
+
 
               <div class="credits-container" style="text-align: center;">
                 Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
