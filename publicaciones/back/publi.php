@@ -66,22 +66,40 @@
       </div>
     </section><!-- End Hero -->
 
-    <!-- ======= Installation Info Section ======= -->
-    <section id="installation-info" class="installation-info">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-6">
-            <img name="archivo" src="<?php echo htmlspecialchars($_GET['archivo']); ?>" class="img-fluid" alt="San Francisco" style="margin-top: 50px;">
-          </div>
-        </div>
-        <div class="row justify-content-center mt-4">
-    <div class="col-md-8">
-        <div><?php echo $_GET['descripcion']; ?></div>
-    </div>
-</div>
+<!-- ======= Publicidad Info Section ======= -->
+<section id="installation-info" class="installation-info">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <?php 
+          $archivo = $_GET['archivo'];
+          $extension = pathinfo($archivo, PATHINFO_EXTENSION);
 
+          // Verificar el tipo de archivo y mostrar el contenido correspondiente
+          if (in_array($extension, array('jpg', 'jpeg', 'png', 'gif'))) {
+            // Mostrar imagen si el archivo es una imagen
+            echo '<img src="' . htmlspecialchars($archivo) . '" class="img-fluid" alt="Publicidad" style="margin-top: 50px;">';
+          } elseif (in_array($extension, array('mp4', 'avi', 'mov', 'wmv'))) {
+            // Mostrar reproductor de video si el archivo es un video
+            echo '<video controls class="img-fluid" style="margin-top: 50px;"><source src="' . htmlspecialchars($archivo) . '" type="video/mp4">Your browser does not support the video tag.</video>';
+          } elseif ($extension == 'pdf') {
+            // Mostrar reproductor de PDF si el archivo es un PDF
+            echo '<iframe src="' . htmlspecialchars($archivo) . '" class="img-fluid" style="margin-top: 50px;" width="600" height="400" frameborder="0"></iframe>';
+          } else {
+            // Mostrar un mensaje de error si el tipo de archivo no es compatible
+            echo 'Tipo de archivo no compatible.';
+          }
+        ?>
       </div>
-    </section><!-- End Installation Info Section -->
+    </div>
+    <div class="row justify-content-center mt-4">
+      <div class="col-md-8">
+        <div><?php echo $_GET['descripcion']; ?></div>
+      </div>
+    </div>
+  </div>
+</section><!-- End Publicidad Info Section -->
+
 
 
   </main>
