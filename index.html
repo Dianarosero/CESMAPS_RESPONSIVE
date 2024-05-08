@@ -14,8 +14,7 @@
   <link href="front-index/img/flavicon-01.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link
-    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -64,32 +63,53 @@
     </div>
   </footer><!-- End Footer -->
 
-<!-- ======= Banner Arriba ======= -->
-<a href="https://wa.me/1234567890" target="_blank" class="top-bar">
-  <div class="scrolling-text-container">
-    <div class="scrolling-text">
-      <span>Descubre todas las oportunidades para compartir y promocionar tu emprendimiento aquí, impulsándolo hacia un éxito aún mayor</span>
+  <!-- ======= Banner Arriba ======= -->
+  <a href="https://wa.me/3156268049" target="_blank" class="top-bar">
+    <div class="scrolling-text-container">
+      <div class="scrolling-text">
+        <span>Descubre todas las oportunidades para compartir y promocionar tu emprendimiento aquí, impulsándolo hacia un éxito aún mayor</span>
+      </div>
+    </div>
+  </a>
+
+  <?php
+  // Conexión a la base de datos
+  include("base de datos/con_db.php");
+
+  // Consulta para obtener una publicación aleatoria que sea un video en formato mp4
+  $sql = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo = 'video/mp4' ORDER BY RAND() LIMIT 1";
+  $result = $conex->query($sql);
+
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    // Combina la ruta base con la ruta almacenada en la base de datos
+    $ruta_archivo = '/publicaciones/back/' . $row['ruta_archivo'];
+?>
+  <!-- ======= Floating Banner principal======= -->
+  <div class="banner-container">
+    <div class="banner">
+      <video controls>
+        <source src="<?php echo 'CESMAPS_RESPONSIVE'.$ruta_archivo; ?>" type="video/mp4">
+        Tu navegador no soporta el elemento de video.
+      </video>
+      <button onclick="cerrarBanner()">Cerrar</button>
     </div>
   </div>
-</a>
+<?php
+  }
+?>
+
+
+
   <!-- ======= Floating Banner ======= -->
   <div class="floating-banner">
     <img src="assets/img/Product-Image.png" alt="Banner Image">
-    <p>Texto corto aquí</p>
   </div>
 
-  <!-- ======= Floating Banner 2======= -->
-  <div class="banner-container">
-    <div class="banner">
-        <p>¡Este es un banner flotante!</p>
-        <button onclick="cerrarBanner()">Cerrar</button>
-    </div>
-</div>
 
-<script src="front-index/js/script.js"></script>
+  <script src="front-index/js/script.js"></script>
 
   <div id="preloader"></div>
-  <!-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> -->
 
   <!-- Vendor JS Files -->
   <script src="front-index/vendor/aos/aos.js"></script>
