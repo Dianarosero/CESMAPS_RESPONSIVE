@@ -72,15 +72,45 @@
     </div>
   </a>
 
-    <div class="banner-container">
-      <div class="banner">
-        <video controls>
-          <source src="" type="video/mp4">
-          Tu navegador no soporta el elemento de video.
-        </video>
-        <button onclick="cerrarBanner()">Cerrar</button>
-      </div>
-    </div>
+  
+  <?php
+  // Conexión a la base de datos
+  include("base de datos/con_db.php");
+  
+  // Verifica si la conexión fue exitosa
+  if ($conex->connect_error) {
+      die("Error de conexión: " . $conex->connect_error);
+  }
+  
+  // Consulta para obtener una publicación aleatoria que sea un video en formato mp4
+  $sql = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo = 'video/mp4' ORDER BY RAND() LIMIT 1";
+  $result = $conex->query($sql);
+  
+  // Verifica si se encontraron resultados
+  if ($result->num_rows > 0) {
+      // Output data de cada fila
+      while ($row = $result->fetch_assoc()) {
+          // Combina la ruta base con la ruta almacenada en la base de datos
+          $ruta_archivo = 'CESMAPS_RESPONSIVE/../publicaciones/back/' . $row['ruta_archivo'];
+          // Muestra el video usando HTML5 video tag
+          echo '<div class="banner-container">';
+          echo '<div class="banner">';
+          echo '<div class="banner">';
+          echo '<button onclick="cerrarBanner()">Cerrar</button>';
+          echo '<video width="640" height="360" controls>';
+          echo '<source src="' . $ruta_archivo . '" type="video/mp4">';
+          echo 'Tu navegador no soporta el tag de video.';
+          echo '</video>';
+          echo '</div>';
+          echo '</div>';
+      }
+  } else {
+      echo "0 resultados encontrados";
+  }
+  
+  // Cierra la conexión
+  $conex->close();
+  ?>
 
   <!-- ======= Floating Banner ======= -->
   <div class="floating-banner">
