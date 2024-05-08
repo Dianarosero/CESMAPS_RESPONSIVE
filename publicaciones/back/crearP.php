@@ -56,17 +56,11 @@ $alto = 0;
 
 // Verificar si el archivo subido es una imagen
 $es_imagen = getimagesize($archivo_temporal);
-if ($es_imagen === false) {
-    session_start();
-    $_SESSION['mensaje'] = 'El archivo subido no es una imagen válida.';
-    header('Location: publicar.php');
-    exit;
+if ($es_imagen !== false) {
+    // Obtener las dimensiones de la imagen
+    $ancho = $es_imagen[0];
+    $alto = $es_imagen[1];
 }
-
-// Obtener las dimensiones de la imagen
-$ancho = $es_imagen[0];
-$alto = $es_imagen[1];
-
 
 // Mover archivo a la carpeta de destino
 if (!move_uploaded_file($archivo_temporal, $ruta_archivo)) {

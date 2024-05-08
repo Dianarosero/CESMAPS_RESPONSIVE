@@ -90,7 +90,7 @@ if (isset($_SESSION['mensaje'])) {
                             toolbar: 'undo redo | bold italic underline | bullist numlist | link',
                             menubar: false,
                             invalid_elements: 'script, i, button',
-                            content_css: 'https://cdn.tiny.cloud/1/YOUR_API_KEY/tinymce/5/skins/content/default/content.min.css',
+                            content_css: 'https://cdn.tiny.cloud/1/r9f40c6dl05kco3atormqo0eun7ei74q1es5drt5kc9hrltv/tinymce/5/skins/content/default/content.min.css',
                             branding: false
                         });
                     </script>
