@@ -28,6 +28,74 @@
 
   <!-- Template Main CSS File -->
   <link href="front-index/css/style.css" rel="stylesheet">
+  <style>
+    .banner-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner {
+  max-width: 90%;
+  max-height: 90%;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+}
+
+.video-wrapper {
+  max-width: 900px;
+  width: 100%;
+  max-height: calc(100vw * 0.9 * 0.5625);
+  height: auto;
+  position: relative;
+}
+
+#videoPlayer {
+  width: 100%;
+  height: 100%;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 9999;
+}
+
+@media only screen and (max-width: 600px) {
+  .banner-container {
+    padding-top: 75%;
+  }
+
+  .video-wrapper {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+/* Estilos para el banner flotante */
+.floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+    max-width: 600px; /* Ancho máximo del banner */
+}
+
+.floating img {
+    max-width: 100%; /* Para hacer la imagen responsiva */
+    height: auto;
+    border-radius: 8px; /* Añade bordes redondeados si lo deseas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Sombra para destacar el banner */
+}
+  </style>
 
 </head>
 
@@ -72,53 +140,81 @@
     </div>
   </a>
 
-  
-  <?php
-  // Conexión a la base de datos
-  include("base de datos/con_db.php");
-  
-  // Verifica si la conexión fue exitosa
-  if ($conex->connect_error) {
-      die("Error de conexión: " . $conex->connect_error);
-  }
-  
-  // Consulta para obtener una publicación aleatoria que sea un video en formato mp4
-  $sql = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo = 'video/mp4' ORDER BY RAND() LIMIT 1";
-  $result = $conex->query($sql);
-  
-  // Verifica si se encontraron resultados
-  if ($result->num_rows > 0) {
-      // Output data de cada fila
-      while ($row = $result->fetch_assoc()) {
-          // Combina la ruta base con la ruta almacenada en la base de datos
-          $ruta_archivo = 'CESMAPS_RESPONSIVE/../publicaciones/back/' . $row['ruta_archivo'];
-          // Muestra el video usando HTML5 video tag
-          echo '<div class="banner-container">';
-          echo '<div class="banner">';
-          echo '<div class="banner">';
-          echo '<button onclick="cerrarBanner()">Cerrar</button>';
-          echo '<video width="640" height="360" controls>';
-          echo '<source src="' . $ruta_archivo . '" type="video/mp4">';
-          echo 'Tu navegador no soporta el tag de video.';
-          echo '</video>';
-          echo '</div>';
-          echo '</div>';
+<!-- Floating Banner -->
+<div class="floating">
+    <?php
+      // PHP code to fetch and display floating banner
+      include("base de datos/con_db.php");
+      // Verifica si la conexión fue exitosa
+      if ($conex->connect_error) {
+        die("Error de conexión: " . $conex->connect_error);
       }
-  } else {
-      echo "0 resultados encontrados";
-  }
-  
-  // Cierra la conexión
-  $conex->close();
+      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+      $sql1 = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND ancho_archivo > alto_archivo ORDER BY RAND() LIMIT 1";
+      $result1 = $conex->query($sql1);
+      // Verifica si se encontraron resultados
+      if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+          $ruta_archivo = 'CESMAPS_RESPONSIVE/../publicaciones/back/' . $row['ruta_archivo'];
+          echo '<img src="' . $ruta_archivo . '" alt="Banner Image">';
+        }
+      } else {
+        echo "No se encontraron imágenes.";
+      }
+      $conex->close();
+    ?>
+</div>
+<!-- End Floating Banner -->
+
+<!-- Banner Container -->
+<?php
+    // PHP code to fetch and display video banner
+    include("base de datos/con_db.php");
+    // Verifica si la conexión fue exitosa
+    if ($conex->connect_error) {
+      die("Error de conexión: " . $conex->connect_error);
+    }
+    // Consulta para obtener una publicación aleatoria que sea un video en formato mp4
+    $sql = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo = 'video/mp4' ORDER BY RAND() LIMIT 1";
+    $result = $conex->query($sql);
+    // Verifica si se encontraron resultados
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_assoc()) {
+        $ruta_archivo = 'CESMAPS_RESPONSIVE/../publicaciones/back/' . $row['ruta_archivo'];
+        echo '<div class="banner-container">';
+        echo '<div class="banner">';
+        echo '<div class="video-wrapper">';
+        echo '<button type="button" class="close" aria-label="Close" onclick="cerrarBanner()"><span aria-hidden="true">&times;</span></button>';
+        echo '<video id="videoPlayer" controls>';
+        echo '<source src="' . $ruta_archivo . '" type="video/mp4">';
+        echo 'Tu navegador no soporta el tag de video.';
+        echo '</video>';
+        echo '</div>';
+        echo '</div>';
+      }
+    } else {
+      echo "No se encontraron videos.";
+    }
+    $conex->close();
   ?>
+  <!-- End Banner Container -->
 
-  <!-- ======= Floating Banner ======= -->
-  <div class="floating-banner">
-    <img src="assets/img/Product-Image.png" alt="Banner Image">
-  </div>
+  <!-- JavaScript files and scripts -->
+  <script>
+    // JavaScript function for closing the banner-container
+    function cerrarBanner() {
+      var videoPlayer = document.getElementById("videoPlayer");
+      if (videoPlayer) {
+        videoPlayer.pause();
+      }
+      var bannerContainer = document.querySelector(".banner-container");
+      if (bannerContainer) {
+        bannerContainer.style.display = "none";
+      }
+    }
+  </script>
 
-
-  <script src="front-index/js/script.js"></script>
+  
 
   <div id="preloader"></div>
 
