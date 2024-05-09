@@ -112,11 +112,30 @@
 
 <!-- Banner -->
 <div class="banner-container">
-  <a href="ruta_del_archivo_destino.html">
-    <img id="responsive-banner" src="../front/usuario/img/horarios de Acompañamiento.png" alt="Banner">
-  </a>
+<?php
+      // PHP code to fetch and display floating banner
+      include("../../../../base de datos/con_db.php");
+      // Verifica si la conexión fue exitosa
+      if ($conex->connect_error) {
+        die("Error de conexión: " . $conex->connect_error);
+      }
+      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+      $sql1 = "SELECT * FROM publicaciones WHERE estado = '0' AND img_interactiva IS NOT NULL ORDER BY RAND() LIMIT 1";
+      $result1 = $conex->query($sql1);
+      // Verifica si se encontraron resultados
+      if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+          $ruta_img = '../../../../publicaciones/back/' . $row['img_interactiva'];
+          echo '<a href="../../../../publicaciones/back/publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
+          echo '<img id="responsive-banner" src="' . $ruta_img . '" alt="Banner Image">';
+          echo '</a>';
+        }
+      } else {
+        echo "No se encontraron imágenes.";
+      }
+      $conex->close();
+?>
 </div>
-
 
               <div class="credits-container" style="text-align: center;">
                 Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024

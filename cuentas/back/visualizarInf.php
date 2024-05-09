@@ -191,12 +191,50 @@ include('../../base de datos/sesiones.php');
     </div>
     
   </main><!-- End #main -->
+
+  <!-- Botón flotante -->
+<button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
+  <i class="bi bi-bell" style="font-size: 24px;"></i>
+</button>
+
+
+<!-- Contenedor del banner flotante (inicialmente visible) -->
+<div class="floating-banner" id="floatingBanner">
+<?php
+      // PHP code to fetch and display floating banner
+      include("../../base de datos/con_db.php");
+      // Verifica si la conexión fue exitosa
+      if ($conex->connect_error) {
+        die("Error de conexión: " . $conex->connect_error);
+      }
+      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+      $sql1 = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND ancho_archivo < alto_archivo ORDER BY RAND() LIMIT 1";
+      $result1 = $conex->query($sql1);
+      // Verifica si se encontraron resultados
+      if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+          $ruta_archivo = '../../publicaciones/back/' . $row['ruta_archivo'];
+          echo '<div class="banner-content">';
+          echo '<img src="' . $ruta_archivo . '" alt="Banner Image">';
+          echo '</div>';
+        }
+      } else {
+        echo "No se encontraron imágenes.";
+      }
+      $conex->close();
+    ?>
+</div>
+
+<Script>
+function toggleBanner() {
+  var banner = document.querySelector('.floating-banner');
+  banner.classList.toggle('hidden');
+}
+</Script>
+
       <a href="cerrar_sesion.php" class="logout-button">
         <img src="../front/visualizar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
-
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
   <script src="../front/visualizar/vendor/apexcharts/apexcharts.min.js"></script>
