@@ -102,41 +102,66 @@ mysqli_close($conex);
   <main id="main">
     <!-- ======= Icon Boxes Section ======= -->
     <section id="icon-boxes" class="icon-boxes">
-      <div class="container">
-        <div class="row">
-          <?php
+        <div class="container">
+            <div class="row">
+                <?php
+                // Realizar la consulta para obtener las instalaciones
+                include("../../../base de datos/con_db.php");
+                $sql = "SELECT * FROM instalaciones";
+                $result = $conex->query($sql);
 
+                // Contador para seguir el número de instalaciones mostradas
+                $contador_instalaciones = 0;
 
-            // Realizar la consulta para obtener las instalaciones
-            include("../../../base de datos/con_db.php");
-            $sql = "SELECT * FROM instalaciones";
-            $result = $conex->query($sql);
+                // Verificar si hay resultados
+                if ($result->num_rows > 0) {
+                    // Iterar sobre los resultados y mostrar los datos en los icon-boxes
+                    while ($row = $result->fetch_assoc()) {
+                        // Enlace a la página de detalles de la instalación
+                        echo '<a href="ins1.php?id=' . $row["id"] . '" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
+                        echo '<div class="icon-box">';
+                        echo '<h4 class="title">' . $row["nombre"] . '</h4>';
+                        echo '<img src="' . $row["foto"] . '" style="max-width: 100%;">';
+                        echo '</div>';
+                        echo '</a>';
 
-            // Verificar si hay resultados
-            if ($result->num_rows > 0) {
-              // Iterar sobre los resultados y mostrar los datos en los icon-boxes
-              while($row = $result->fetch_assoc()) {
-                // Enlace a la página de detalles de la instalación
-                echo '<a href="ins1.php?id=' . $row["id"] . '" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
-                echo '<div class="icon-box">';
-                echo '<h4 class="title">' . $row["nombre"] . '</h4>';
-                echo '<img src="' . $row["foto"] . '" style="max-width: 100%;">';
-                echo '</div>';
-                echo '</a>';
-              }
-            } else {
-              // Si no hay instalaciones en la base de datos, mostrar un mensaje
-              echo "<p>No se encontraron instalaciones.</p>";
-            }
+                        // Incrementar el contador de instalaciones
+                        $contador_instalaciones++;
 
-            // Cerrar la conexión a la base de datos
-            $conex->close();
-          ?>
+                        // Después de cada dos instalaciones, mostrar la publicidad
+                        if ($contador_instalaciones % 2 == 0) {
+                            // Aquí puedes consultar la base de datos para obtener la publicidad
+                            $sql_publicidad = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND tipo_archivo <> 'application/pdf' AND ancho_archivo <= alto_archivo ORDER BY RAND() LIMIT 1";
+                            $result_publicidad = $conex->query($sql_publicidad);
+                            // Luego, mostrar la publicidad
+                            // Verificar si hay resultados
+                            if ($result_publicidad->num_rows > 0) {
+                              // Iterar sobre los resultados y mostrar los datos en los icon-boxes
+                              while ($rowP = $result_publicidad->fetch_assoc()) {
+                              $ruta_archivo = '../../../publicaciones/back/' . $rowP['ruta_archivo'];
+                              echo '<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">';
+                              echo '<div class="icon-box">';
+                              echo '<h4 class="title">'. $rowP["titulo"] .'</h4>';
+                              echo '<img src="' . $ruta_archivo . '" style="max-width: 100%;">';
+                              echo '</div>';
+                              echo '</div>';
+                              }
+                            }
+                        }
+                    }
+                } else {
+                    // Si no hay instalaciones en la base de datos, mostrar un mensaje
+                    echo "<p>No se encontraron instalaciones.</p>";
+                }
+
+                // Cerrar la conexión a la base de datos
+                $conex->close();
+                ?>
+            </div>
         </div>
-      </div>
     </section><!-- End Icon Boxes Section -->
+</main>
 
-  </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
