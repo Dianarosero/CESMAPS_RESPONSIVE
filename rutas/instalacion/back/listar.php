@@ -139,12 +139,13 @@ mysqli_close($conex);
                               // Iterar sobre los resultados y mostrar los datos en los icon-boxes
                               while ($rowP = $result_publicidad->fetch_assoc()) {
                               $ruta_archivo = '../../../publicaciones/back/' . $rowP['ruta_archivo'];
-                              echo '<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">';
+                              echo '<a href="../../../publicaciones/back/publi.php?titulo=' . urlencode($rowP["titulo"]) . '&archivo=' . urlencode($rowP["ruta_archivo"]) . '&descripcion=' . urlencode($rowP["descripcion"]) . '">';
                               echo '<div class="icon-box">';
+                              echo '<h3 style="color: red; font-size: 10px; text-align: center;">PUBLICIDAD</h3>';
                               echo '<h4 class="title">'. $rowP["titulo"] .'</h4>';
                               echo '<img src="' . $ruta_archivo . '" style="max-width: 100%;">';
                               echo '</div>';
-                              echo '</div>';
+                              echo '</a>';
                               }
                             }
                         }

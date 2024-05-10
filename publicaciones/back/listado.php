@@ -109,10 +109,9 @@ $result = $conex->query($sql);
 if ($result->num_rows > 0) {
     // Mostrar datos en cada icon-box
     while($row = $result->fetch_assoc()) {
-        echo '<div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
+        echo '<a href="publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
         echo '<div class="icon-box">';
-        echo '<h4 class="title"><a href="publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">' . $row["titulo"] . '</a></h4>';
-
+        echo '<h4 class="title">' . $row["titulo"] .'</h4>';
         // Verificar el tipo de archivo
         $extension = pathinfo($row["ruta_archivo"], PATHINFO_EXTENSION);
         if ($extension == "pdf") {
@@ -128,9 +127,8 @@ if ($result->num_rows > 0) {
             // Mostrar una imagen genérica si el tipo de archivo no es reconocido
             echo '<img src="../front/listar/img/file_icon.png" alt="Archivo">';
         }
-
         echo '</div>';
-        echo '</div>';
+        echo '</a>';
     }
 } else {
     echo "No se encontraron publicaciones.";

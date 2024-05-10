@@ -101,39 +101,65 @@ include("../../../base de datos/sesiones.php");
   <main id="main">
     <!-- ======= Icon Boxes Section ======= -->
     <section id="icon-boxes" class="icon-boxes">
-      <div class="container">
-        <div class="row">
-          <?php
+        <div class="container">
+            <div class="row">
+                <?php
+                // Realizar la consulta para obtener las instalaciones
+                $sql = "SELECT * FROM puntos";
+                $result = $conex->query($sql);
 
-            // Realizar la consulta para obtener las instalaciones
-            $sql = "SELECT * FROM puntos";
-            $result = $conex->query($sql);
+                // Verificar si hay resultados
+                if ($result->num_rows > 0) {
+                    // Contador para llevar el control de cada dos puntos
+                    $counter = 0;
+                    // Iterar sobre los resultados y mostrar los datos en los icon-boxes
+                    while ($row = $result->fetch_assoc()) {
+                        // Enlace a la página de detalles de la instalación
+                        echo '<a href="punto1.php?id=' . $row["id"] . '" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
+                        echo '<div class="icon-box">';
+                        echo '<h4 class="title">' . $row["nombre"] . '</h4>';
+                        echo '<img src="' . $row["foto"] . '" style="max-width: 100%;">';
+                        echo '</div>';
+                        echo '</a>';
 
-            // Verificar si hay resultados
-            if ($result->num_rows > 0) {
-              // Iterar sobre los resultados y mostrar los datos en los icon-boxes
-              while($row = $result->fetch_assoc()) {
-                // Enlace a la página de detalles de la instalación
-                echo '<a href="punto1.php?id=' . $row["id"] . '" class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">';
-                echo '<div class="icon-box">';
-                echo '<h4 class="title">' . $row["nombre"] . '</h4>';
-                echo '<img src="' . $row["foto"] . '" style="max-width: 100%;">';
-                echo '</div>';
-                echo '</a>';
-              }
-            } else {
-              // Si no hay puntos en la base de datos, mostrar un mensaje
-              echo "<p>No se encontraron puntos.</p>";
-            }
+                        // Incrementar el contador
+                        $counter++;
 
-            // Cerrar la conexión a la base de datos
-            $conex->close();
-          ?>
+                        // Si el contador es divisible por 2, mostrar la publicidad
+                        if ($counter % 2 == 0) {
+                            // Aquí puedes consultar la base de datos para obtener la publicidad
+                            $sql_publicidad = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND tipo_archivo <> 'application/pdf' AND ancho_archivo <= alto_archivo ORDER BY RAND() LIMIT 1";
+                            $result_publicidad = $conex->query($sql_publicidad);
+                            // Luego, mostrar la publicidad
+                            // Verificar si hay resultados
+                            if ($result_publicidad->num_rows > 0) {
+                              // Iterar sobre los resultados y mostrar los datos en los icon-boxes
+                              while ($rowP = $result_publicidad->fetch_assoc()) {
+                              $ruta_archivo = '../../../publicaciones/back/' . $rowP['ruta_archivo'];
+                              echo '<a href="../../../publicaciones/back/publi.php?titulo=' . urlencode($rowP["titulo"]) . '&archivo=' . urlencode($rowP["ruta_archivo"]) . '&descripcion=' . urlencode($rowP["descripcion"]) . '">';
+                              echo '<div class="icon-box">';
+                              echo '<h3 style="color: red; font-size: 10px; text-align: center;">PUBLICIDAD</h3>';
+                              echo '<h4 class="title">'. $rowP["titulo"] .'</h4>';
+                              echo '<img src="' . $ruta_archivo . '" style="max-width: 100%;">';
+                              echo '</div>';
+                              echo '</a>';
+                              }
+                            }
+                        }
+                    }
+                } else {
+                    // Si no hay puntos en la base de datos, mostrar un mensaje
+                    echo "<p>No se encontraron puntos.</p>";
+                }
+
+                // Cerrar la conexión a la base de datos
+                $conex->close();
+                ?>
+            </div>
         </div>
-      </div>
     </section><!-- End Icon Boxes Section -->
+</main>
 
-  </main>
 
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">

@@ -180,10 +180,6 @@
         <img src="../front/admin/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
 
-
-
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
   <!-- Vendor JS Files -->
   <script src="../front/admin/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="../front/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

@@ -241,7 +241,7 @@ if (isset($_SESSION['mensaje'])) {
         echo "No se encontraron imágenes.";
       }
       $conex->close();
-    ?>
+  ?>
 </div>
 
 <Script>

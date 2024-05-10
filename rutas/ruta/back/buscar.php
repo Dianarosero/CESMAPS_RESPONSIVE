@@ -16,8 +16,6 @@ function registrarBusqueda($idRuta, $idUsuario) {
     }
 }
 
-
-
 // Realizar la consulta para obtener los puntos disponibles
 $sql = "SELECT * FROM puntos";
 $result = $conex->query($sql);
@@ -53,9 +51,6 @@ $result = $conex->query($sql);
 
 <main>
   <div class="container">
-
-    <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
@@ -114,20 +109,73 @@ $result = $conex->query($sql);
 
               </div>
             </div>
-
-            <div class="credits-container" style="text-align: center;">
-              Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
-            </div>
-
           </div>
         </div>
       </div>
-
-    </section>
-
   </div>
 
 </main>
+
+<!-- Banner -->
+<div class="banner-container">
+<?php
+      // PHP code to fetch and display floating banner
+      include("../../../base de datos/con_db.php");
+      // Verifica si la conexión fue exitosa
+      if ($conex->connect_error) {
+        die("Error de conexión: " . $conex->connect_error);
+      }
+      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+      $sql1 = "SELECT * FROM publicaciones WHERE estado = '0' AND img_interactiva IS NOT NULL ORDER BY RAND() LIMIT 1";
+      $result1 = $conex->query($sql1);
+      // Verifica si se encontraron resultados
+      if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+          $ruta_img = '../../../publicaciones/back/' . $row['img_interactiva'];
+          echo '<a href="../../../publicaciones/back/publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
+          echo '<img id="responsive-banner" src="' . $ruta_img . '" alt="Banner Image">';
+          echo '</a>';
+        }
+      } else {
+        echo "No se encontraron imágenes.";
+      }
+?>
+<!-- Botón flotante -->
+<button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
+  <i class="bi bi-bell" style="font-size: 24px;"></i>
+</button>
+
+<!-- Contenedor del banner flotante (inicialmente visible) -->
+<div class="floating-banner" id="floatingBanner">
+<?php
+      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+      $sql2 = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND ancho_archivo < alto_archivo ORDER BY RAND() LIMIT 1";
+      $result2 = $conex->query($sql2);
+      // Verifica si se encontraron resultados
+      if ($result2->num_rows > 0) {
+        while ($row2 = $result2->fetch_assoc()) {
+          $ruta_archivo2 = '../../../publicaciones/back/' . $row2['ruta_archivo'];
+          echo '<div class="banner-content">';
+          echo '<img src="' . $ruta_archivo2 . '" alt="Banner Image">';
+          echo '</div>';
+        }
+      } else {
+        echo "No se encontraron imágenes.";
+      }
+      $conex->close();
+    ?>
+</div>
+
+<Script>
+function toggleBanner() {
+  var banner = document.querySelector('.floating-banner');
+  banner.classList.toggle('hidden');
+}
+</Script>
+
+<div class="credits-container" style="text-align: center;">
+              Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
+            </div>
 
 <a href="../../../base de datos/cerrar.php" class="logout-button">
   <img src="../front/buscar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
