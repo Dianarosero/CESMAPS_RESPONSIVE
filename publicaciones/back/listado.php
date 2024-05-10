@@ -109,7 +109,7 @@ $result = $conex->query($sql);
 if ($result->num_rows > 0) {
     // Mostrar datos en cada icon-box
     while($row = $result->fetch_assoc()) {
-        echo '<a href="publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
+        echo '<a class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up" href="publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
         echo '<div class="icon-box">';
         echo '<h4 class="title">' . $row["titulo"] .'</h4>';
         // Verificar el tipo de archivo

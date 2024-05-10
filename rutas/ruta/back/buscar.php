@@ -41,6 +41,7 @@ $result = $conex->query($sql);
 
   <!-- Template Main CSS File -->
   <link href="../front/buscar/css/style_buscar.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body>
@@ -140,38 +141,6 @@ $result = $conex->query($sql);
         echo "No se encontraron imágenes.";
       }
 ?>
-<!-- Botón flotante -->
-<button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
-  <i class="bi bi-bell" style="font-size: 24px;"></i>
-</button>
-
-<!-- Contenedor del banner flotante (inicialmente visible) -->
-<div class="floating-banner" id="floatingBanner">
-<?php
-      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
-      $sql2 = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND ancho_archivo < alto_archivo ORDER BY RAND() LIMIT 1";
-      $result2 = $conex->query($sql2);
-      // Verifica si se encontraron resultados
-      if ($result2->num_rows > 0) {
-        while ($row2 = $result2->fetch_assoc()) {
-          $ruta_archivo2 = '../../../publicaciones/back/' . $row2['ruta_archivo'];
-          echo '<div class="banner-content">';
-          echo '<img src="' . $ruta_archivo2 . '" alt="Banner Image">';
-          echo '</div>';
-        }
-      } else {
-        echo "No se encontraron imágenes.";
-      }
-      $conex->close();
-    ?>
-</div>
-
-<Script>
-function toggleBanner() {
-  var banner = document.querySelector('.floating-banner');
-  banner.classList.toggle('hidden');
-}
-</Script>
 
 <div class="credits-container" style="text-align: center;">
               Derechos de autor <strong><span>Encryption</span></strong>. Todos los derechos reservados &copy; 2024
@@ -181,7 +150,6 @@ function toggleBanner() {
   <img src="../front/buscar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
 </a>
 
-<a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
 <script src="../front/buscar/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

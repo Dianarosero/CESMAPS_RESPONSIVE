@@ -107,6 +107,7 @@ mysqli_close($conex);
 
   <!-- Template Main CSS File -->
   <link href="../front/editar/css/style_editarP.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
 
  <!-- Inline CSS to remove right margin -->
  <style>
@@ -124,8 +125,7 @@ mysqli_close($conex);
   <main>
     <div class="container">
 
-      <section class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4">
-
+      
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
@@ -188,7 +188,6 @@ mysqli_close($conex);
           </div>
         </div>
 
-      </section>
 
     </div>
 
@@ -219,6 +218,48 @@ mysqli_close($conex);
         <?php } ?>
     <?php } ?>
 </script>
+
+
+      <!-- Botón flotante -->
+      <button id="toggleButton" onclick="toggleBanner()" class="floating-button rounded-circle btn-primary">
+  <i class="bi bi-bell" style="font-size: 24px;"></i>
+</button>
+
+
+<!-- Contenedor del banner flotante (inicialmente visible) -->
+<div class="floating-banner" id="floatingBanner">
+<?php
+      // PHP code to fetch and display floating banner
+      include("../../../base de datos/con_db.php");
+      // Verifica si la conexión fue exitosa
+      if ($conex->connect_error) {
+        die("Error de conexión: " . $conex->connect_error);
+      }
+      // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+      $sql1 = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND ancho_archivo < alto_archivo ORDER BY RAND() LIMIT 1";
+      $result1 = $conex->query($sql1);
+      // Verifica si se encontraron resultados
+      if ($result1->num_rows > 0) {
+        while ($row = $result1->fetch_assoc()) {
+          $ruta_archivo = '../../../publicaciones/back/' . $row['ruta_archivo'];
+          echo '<div class="banner-content">';
+          echo '<img src="' . $ruta_archivo . '" alt="Banner Image">';
+          echo '</div>';
+        }
+      } else {
+        echo "No se encontraron imágenes.";
+      }
+      $conex->close();
+    ?>
+</div>
+
+<Script>
+function toggleBanner() {
+  var banner = document.querySelector('.floating-banner');
+  banner.classList.toggle('hidden');
+}
+</Script>
+
 
 </body>
 
