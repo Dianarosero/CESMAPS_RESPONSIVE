@@ -57,7 +57,8 @@ $result = $conex->query($sql);
           <div class="col-lg-6 col-md-8 d-flex flex-column align-items-center justify-content-center">
 
             <div class="d-flex justify-content-center py-4 align-items-center">
-              <a href="index.html" class="logo d-flex align-items-center w-auto">
+            
+            <a href="index.html" class="logo d-flex align-items-center w-auto">
                 <img src="../front/buscar/img/flavicon-01.png" alt="" style="margin-right: 10px;">
                 <span>CESMAPS</span>
               </a>
@@ -136,6 +137,7 @@ $result = $conex->query($sql);
           echo '<a href="../../../publicaciones/back/publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
           echo '<img id="responsive-banner" src="' . $ruta_img . '" alt="Banner Image">';
           echo '</a>';
+          echo '<br><br>';
         }
       } else {
         echo "No se encontraron imágenes.";

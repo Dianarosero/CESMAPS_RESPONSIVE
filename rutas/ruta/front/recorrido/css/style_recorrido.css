@@ -929,11 +929,13 @@
   .footer {
     color: #fff;
     background: url("../img/logocesmaps-01-01.png") top center no-repeat;
-    background-size: cover;
+    background-size: 100%; /* Ajuste para que el fondo sea responsive */
     font-size: 0px;
-    padding: 150px 0 150px 0;
+    padding: 10% 0; /* Ajusta el padding de manera relativa */
     position: relative;
-  }
+}
+
+
   
   .footer:before {
     content: "";

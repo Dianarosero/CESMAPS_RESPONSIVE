@@ -169,53 +169,57 @@ if ($result->num_rows > 0) {
         </div>
       </div>
     </section>
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
-      <div class="container" data-aos="fade-up">
-        <div class="section-header">
-          <h2>Anuncios</h2>
-          </div>
-        <div class="slides-2 swiper">
-          <div class="swiper-wrapper">
+
+    <!-- ======= Publicidad Section ======= -->
+<section id="testimonials" class="testimonials section-bg">
+  <div class="container" data-aos="fade-up">
+    <div class="section-header">
+      <h2>Publicidad</h2>
+    </div>
+    <div class="slides-2 swiper">
+      <div class="swiper-wrapper">
+
+        <?php
+        // Estableciendo la conexión a la base de datos
+        include("../../../base de datos/con_db.php");
+        // Verifica si la conexión fue exitosa
+        if ($conex->connect_error) {
+          die("Error de conexión: " . $conex->connect_error);
+        }
+
+        // Consulta para obtener las publicidades
+        $sql = "SELECT * FROM publicaciones WHERE estado = '0' AND tipo_archivo <> 'video/mp4' AND ancho_archivo <= alto_archivo ORDER BY RAND() LIMIT 5"; // Cambia 'tabla_publicidades' por el nombre de tu tabla
+        $result = $conex->query($sql);
+
+        if ($result->num_rows > 0) {
+          // Itera sobre los resultados y muestra cada publicidad
+          while ($row = $result->fetch_assoc()) {
+            $ruta_archivo = '../../../publicaciones/back/' . $row['ruta_archivo'];
+            ?>
             <div class="swiper-slide">
               <div class="testimonial-wrap">
                 <div class="testimonial-item">
                   <img src="../front/recorrido/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                  <h3>Saul Goodman</h3>
-                  <h4>Ceo &amp; Founder</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
+                  <img src="<?php echo $ruta_archivo; ?>" alt="publicidad" class="img-fluid">
                 </div>
               </div>
-            </div><!-- End testimonial item -->
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="../front/recorrido/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
+            </div>
+          <?php
+          }
+        } else {
+          echo "No se encontraron publicidades.";
+        }
+
+        $conex->close();
+        ?>
+
       </div>
-    </section><!-- End Testimonials Section -->
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section><!-- ======= Publicidad Section ======= -->
+
+
 <!-- ======= Footer ======= -->
 <footer id="footer" class="footer">
   <div class="container">
@@ -223,7 +227,6 @@ if ($result->num_rows > 0) {
     </div>
   </div>
 </footer><!-- End  Footer -->
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
   <div id="preloader"></div>
   <!-- Vendor JS Files -->
   <script src="../front/recorrido/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
