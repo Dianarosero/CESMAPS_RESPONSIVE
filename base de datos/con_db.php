@@ -1,13 +1,13 @@
 <?php
-$host = 'localhost';
+$host = 'server1440';
 $dbname = 'u814985592_cesmaps';
 $username = 'u814985592_cesmaps';
 $password = '12345Cesmaps';
 
 try {
-    $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $conex = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     // Establecer el modo de error de PDO a excepción
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     echo "Conexión exitosa";
 } catch(PDOException $e) {
     echo "Error de conexión: " . $e->getMessage();
