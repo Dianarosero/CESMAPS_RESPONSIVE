@@ -128,7 +128,7 @@
                       </button>
                       <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="../../../../publicaciones/back/publicar.php">Publicar</a></li>
-                        <li><a class="dropdown-item" href="../../../../publicaciones/back/editar.php">Editar</a></li>
+                        <li><a class="dropdown-item" href="../../../../publicaciones/back/editar.php">Gestionar</a></li>
                         <li><a class="dropdown-item" href="../../../../publicaciones/back/listado.php">Listar</a></li>
                       </ul>
                     </div>

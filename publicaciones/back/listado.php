@@ -26,7 +26,9 @@ include('../../base de datos/sesiones.php');
   <link href="../front/listar/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="../front/listar/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../front/listar/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-
+  <!-- Enlaces a los archivos CSS de Bootstrap -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  
   <!-- Template Main CSS File -->
   <link href="../front/listar/css/style_listarI.css" rel="stylesheet">
 
@@ -47,7 +49,7 @@ include('../../base de datos/sesiones.php');
   }
   .fixed-buttons {
       position: absolute;
-      top: 0;
+      top: 30px;
       left: 0;
       right: 0;
       z-index: 999; /* Asegura que los botones estén por encima de otros elementos */
@@ -70,13 +72,20 @@ include('../../base de datos/sesiones.php');
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>';
     }else{
+      echo '<a href="https://wa.me/3156268049" target="_blank" class="top-bar">
+      <div class="scrolling-text-container">
+        <div class="scrolling-text">
+          <span>Descubre todas las oportunidades para compartir y promocionar tu emprendimiento aquí, impulsándolo hacia un éxito aún mayor</span>
+        </div>
+      </div>
+    </a>';
         echo '<a href="../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>';
     }
     ?>
 
-      <a href="cerrar_sesion.php" class="logout-button">
+      <a href="../../base de datos/cerrar.php" class="logout-button">
         <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
     </div>
@@ -86,7 +95,7 @@ include('../../base de datos/sesiones.php');
       <div class="carousel-item active">
         <div class="carousel-container">
           <h2 class="animate__animated animate__fadeInDown">Publicaciones<span></span></h2>
-          <p class="animate__animated animate__fadeInUp">Aquí se visualizarán las Publicaciones que se encuentran en nuestra universidad</p>
+          <p class="animate__animated animate__fadeInUp">Aquí se muestran diversas publicaciones que podrían resultarte interesantes</p>
         </div>
       </div>
     </div>
@@ -94,7 +103,7 @@ include('../../base de datos/sesiones.php');
 
   <main id="main">
     <!-- ======= Icon Boxes Section ======= -->
-    <section id="icon-boxes" class="icon-boxes">
+    <section id="publicaciones" class="icon-boxes">
       <div class="container">
         <div class="row">
 
@@ -102,8 +111,36 @@ include('../../base de datos/sesiones.php');
 // Conexión a la base de datos
 include("../../base de datos/con_db.php");
 
-// Consulta para obtener las publicaciones
-$sql = "SELECT * FROM publicaciones WHERE estado = '0'";
+// Obtener las categorías disponibles desde la base de datos
+$sql_categorias = "SELECT * FROM categorias";
+$result_categorias = $conex->query($sql_categorias);
+
+echo '<div class="mt-lg-0 mb-3">'; // Agregar margen inferior de 20px
+echo '<form method="GET" class="form-inline">';
+echo '<div class="form-group d-flex">';
+echo '<select name="categoria" class="form-control mr-2">';
+echo '<option value="">TODAS LAS CATEGORIAS</option>';
+while ($row_categoria = $result_categorias->fetch_assoc()) {
+    $selected = '';
+    if (isset($_GET['categoria']) && $_GET['categoria'] == $row_categoria["id"]) {
+        $selected = 'selected';
+    }
+    echo '<option value="' . $row_categoria["id"] . '" ' . $selected . '>' . $row_categoria["nombre"] . '</option>';
+}
+echo '</select>';
+echo '<button type="submit" class="btn custom-btn">Filtrar</button>';
+echo '</div>';
+echo '</form>';
+echo '</div>'; // Cerrar el div que contiene el formulario
+
+
+// Construir la consulta SQL para obtener las publicaciones filtradas por categoría
+$sql = "SELECT p.* FROM publicaciones p WHERE p.estado = '0'";
+if(isset($_GET['categoria']) && !empty($_GET['categoria'])) {
+    $categoria_id = $conex->real_escape_string($_GET['categoria']);
+    $sql .= " AND p.id_categoria = $categoria_id";
+}
+
 $result = $conex->query($sql);
 
 if ($result->num_rows > 0) {
@@ -136,6 +173,7 @@ if ($result->num_rows > 0) {
 
 $conex->close();
 ?>
+
 
         </div>
       </div>
