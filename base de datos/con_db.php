@@ -1,5 +1,5 @@
 <?php
-$host = 'server1440';
+$host = 'localhost';
 $dbname = 'u814985592_cesmaps';
 $username = 'u814985592_cesmaps';
 $password = '12345Cesmaps';
