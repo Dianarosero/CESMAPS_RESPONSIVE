@@ -86,7 +86,7 @@
       // Verifica si se encontraron resultados
       if ($result1->num_rows > 0) {
         while ($row = $result1->fetch_assoc()) {
-          $ruta_archivo = 'CESMAPS_RESPONSIVE/../publicaciones/back/' . $row['ruta_archivo'];
+          $ruta_archivo = 'public_html/../publicaciones/back/' . $row['ruta_archivo'];
           echo '<img src="' . $ruta_archivo . '" alt="Banner Image">';
         }
       } else {
@@ -111,7 +111,7 @@
     // Verifica si se encontraron resultados
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
-        $ruta_archivo = 'CESMAPS_RESPONSIVE/../publicaciones/back/' . $row['ruta_archivo'];
+        $ruta_archivo = 'public_html/../publicaciones/back/' . $row['ruta_archivo'];
         echo '<div class="banner-container">';
         echo '<div class="banner">';
         echo '<div class="video-wrapper">';
