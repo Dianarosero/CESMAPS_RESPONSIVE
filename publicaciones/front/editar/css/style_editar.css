@@ -714,3 +714,10 @@ section {
 #footer .credits a {
   color: #f6b024;
 }
+
+.custom-btn {
+  background-color: #999;
+  color: rgb(9, 0, 103);
+  border: none; /* Esto elimina cualquier borde que pueda estar presente */
+}
+

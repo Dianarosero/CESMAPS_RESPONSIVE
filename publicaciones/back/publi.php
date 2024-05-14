@@ -47,7 +47,7 @@
 <section id="hero" class="d-flex justify-content-center align-items-center position-relative">
     <!-- Botones siempre en la parte superior de la sección de héroe -->
     <div class="fixed-buttons">
-      <a href="listado.php" class="btn-back">
+      <a href="javascript:history.go(-1)" class="btn-back">
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>
 
@@ -70,35 +70,59 @@
 <section id="installation-info" class="installation-info">
   <div class="container">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <!-- Columna para el archivo -->
+      <div class="col-lg-6 order-lg-1 mt-4 text-center">
         <?php 
-          $archivo = $_GET['archivo'];
+          $archivo = $_GET['ruta_archivo'];
           $extension = pathinfo($archivo, PATHINFO_EXTENSION);
 
           // Verificar el tipo de archivo y mostrar el contenido correspondiente
           if (in_array($extension, array('jpg', 'jpeg', 'png', 'gif'))) {
             // Mostrar imagen si el archivo es una imagen
-            echo '<img src="' . htmlspecialchars($archivo) . '" class="img-fluid" alt="Publicidad" style="margin-top: 50px;">';
+            echo '<img src="' . htmlspecialchars($archivo) . '" class="img-fluid" alt="Publicidad">';
           } elseif (in_array($extension, array('mp4', 'avi', 'mov', 'wmv'))) {
             // Mostrar reproductor de video si el archivo es un video
-            echo '<video controls class="img-fluid" style="margin-top: 50px;"><source src="' . htmlspecialchars($archivo) . '" type="video/mp4">Your browser does not support the video tag.</video>';
+            echo '<video controls class="img-fluid"><source src="' . htmlspecialchars($archivo) . '" type="video/mp4">Your browser does not support the video tag.</video>';
           } elseif ($extension == 'pdf') {
             // Mostrar reproductor de PDF si el archivo es un PDF
-            echo '<iframe src="' . htmlspecialchars($archivo) . '" class="img-fluid" style="margin-top: 50px;" width="600" height="400" frameborder="0"></iframe>';
+            echo '<div class="embed-responsive embed-responsive-16by9" style="max-width: 100%; overflow-y: auto;">';
+            echo '<iframe src="' . htmlspecialchars($archivo) . '" class="embed-responsive-item" frameborder="0" style="width: 100%; min-height: 500px;"></iframe>';
+            echo '</div>';
           } else {
             // Mostrar un mensaje de error si el tipo de archivo no es compatible
             echo 'Tipo de archivo no compatible.';
           }
         ?>
+        <div><?php echo "<p>FECHA DE PUBLICACION: ".$_GET['fecha_publicacion']."</p>"; ?></div>
       </div>
-    </div>
-    <div class="row justify-content-center mt-4">
-      <div class="col-md-8">
-        <div><?php echo $_GET['descripcion']; ?></div>
+      <!-- Columna para la descripción -->
+      <div class="col-lg-6 order-lg-2 mt-4">
+        <div><?php echo "<h6>DESCRIPCION:</h6>".$_GET['descripcion']; ?></div>
+        <?php if(isset($_GET['autor']) && !empty($_GET['autor'])): ?>
+        <div><br><h6>PUBLICADO POR:</h6><?php echo $_GET['autor']; ?></div>
+          <?php endif; ?>
+  
+          <?php if(isset($_GET['contacto']) && !empty($_GET['contacto'])): ?>
+        <div><br><h6>CONTACTO:</h6>
+        <?php 
+        $contacto = $_GET['contacto'];
+        if(filter_var($contacto, FILTER_VALIDATE_EMAIL)) {
+          echo '<a href="https://mail.google.com/mail/?view=cm&fs=1&to='.$contacto.'" target="_blank">'.$contacto.'</a>';
+        } elseif(preg_match('/^\+?\d+$/', $contacto)) {
+          // Suponiendo que solo se permiten números y el símbolo '+'
+          echo '<a href="tel:'.$contacto.'">'.$contacto.'</a>';
+        } else {
+          // Si no es un correo electrónico ni un número de teléfono válido, simplemente mostrarlo
+          echo $contacto;
+        }
+          ?>
+        </div>
+        <?php endif; ?>
       </div>
     </div>
   </div>
-</section><!-- End Publicidad Info Section -->
+</section>
+<!-- End Publicidad Info Section -->
 
 
 

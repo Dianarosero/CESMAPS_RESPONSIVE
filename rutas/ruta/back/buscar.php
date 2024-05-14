@@ -134,7 +134,16 @@ $result = $conex->query($sql);
       if ($result1->num_rows > 0) {
         while ($row = $result1->fetch_assoc()) {
           $ruta_img = '../../../publicaciones/back/' . $row['img_interactiva'];
-          echo '<a href="../../../publicaciones/back/publi.php?titulo=' . urlencode($row["titulo"]) . '&archivo=' . urlencode($row["ruta_archivo"]) . '&descripcion=' . urlencode($row["descripcion"]) . '">';
+          echo '<a href="../../../publicaciones/back/publi.php?';
+
+          // Itera sobre el array $row
+          foreach ($row as $key => $value) {
+              // Concatena cada par clave-valor en la URL
+              echo urlencode($key) . '=' . urlencode($value) . '&';
+          }
+          
+          // Cierra el enlace
+          echo '">';
           echo '<img id="responsive-banner" src="' . $ruta_img . '" alt="Banner Image">';
           echo '</a>';
           echo '<br><br>';
