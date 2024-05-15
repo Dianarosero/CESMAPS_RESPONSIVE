@@ -75,7 +75,7 @@ include('../../base de datos/sesiones.php');
       echo '<a href="https://wa.me/3156268049" target="_blank" class="top-bar">
       <div class="scrolling-text-container">
         <div class="scrolling-text">
-          <span>Descubre todas las oportunidades para compartir y promocionar tu emprendimiento aquí, impulsándolo hacia un éxito aún mayor</span>
+          <span>Si deseas realizar una publicación, pulsa aquí</span>
         </div>
       </div>
     </a>';
