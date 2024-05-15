@@ -122,7 +122,7 @@ if ($result->num_rows > 0) {
         <a href="buscar.php" class="btn-back">
             <img src="../front/recorrido/img/volver-01-01-01.png" alt="Volver">
         </a>
-        <a href="../../../index.html" class="logout-button">
+        <a href="../../../base de datos/cerrar.php" class="logout-button">
             <img src="../front/recorrido/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
         </a>
     </div>

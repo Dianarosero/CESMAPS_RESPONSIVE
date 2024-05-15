@@ -82,7 +82,7 @@ include("../../../base de datos/sesiones.php");
     }
 ?>
 
-      <a href="../../../index.html" class="logout-button">
+      <a href="../../../base de datos/cerrar.php" class="logout-button">
         <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
     </div>

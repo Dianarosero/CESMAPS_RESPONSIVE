@@ -232,7 +232,7 @@ function toggleBanner() {
 }
 </Script>
 
-      <a href="cerrar_sesion.php" class="logout-button">
+      <a href="../../base de datos/cerrar.php" class="logout-button">
         <img src="../front/visualizar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
 

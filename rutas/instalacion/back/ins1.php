@@ -80,7 +80,7 @@ $conex->close();
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>
 
-      <a href="../../../index.html" class="logout-button">
+      <a href="../../..//base de datos/cerrar.php" class="logout-button">
         <img src="../front/listar/img/cerrar_sesion-01.png" alt="Cerrar Sesión">
       </a>
     </div>
