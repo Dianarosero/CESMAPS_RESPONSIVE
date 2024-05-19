@@ -26,6 +26,7 @@
   <link href="../front/usuario/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="../front/usuario/vendor/simple-datatables/style_welcome.css" rel="stylesheet">
 
+  <script src="//code.tidio.co/ppb0jisirtiggo5joug64gshhe427chh.js" async></script>
   <!-- Template Main CSS File -->
   <link href="../front/usuario/css/style_welcomeU.css" rel="stylesheet">
 
