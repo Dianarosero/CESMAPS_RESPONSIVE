@@ -157,32 +157,32 @@ if ($result->num_rows > 0) {
   <main id="main">
 <!-- ======= Our Projects Section ======= -->
 <section id="installation-info" class="installation-info">
-      <div class="container">
+    <div class="container">
         <div class="row justify-content-center">
-          <div class="col-md-6">
-            <img name="foto" src="<?php echo $imagen; ?>" class="img-fluid" alt="Imagen de la ruta">
-            <!-- <img src="../front/recorrido\img\Castellana - Goretti-01.png" class="img-fluid" alt="San Francisco" style="margin-top: 50px;"> -->
-          </div>
-        </div>
-        <div class="row justify-content-center mt-4">
-        <div class="container mt-5">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Reproductor de Audio</h5>
-                <audio controls class="w-100">
-                    <source src="synthesis.wav" type="audio/wav">
-                    Tu navegador no soporta el elemento de audio.
-                </audio>
+            <div class="col-md-6">
+                <img name="foto" src="<?php echo $imagen; ?>" class="img-fluid" alt="Imagen de la ruta" style="margin-top: -38px;">
+            </div>
+            <div class="col-md-6">
+                <div class="container mt-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Reproductor de Audio</h5>
+                            <audio controls class="w-100">
+                                <source src="synthesis.wav" type="audio/wav">
+                                Tu navegador no soporta el elemento de audio.
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <h3>Descripción</h3>
+                    <p><?php echo $descripcion; ?></p>
+                </div>
             </div>
         </div>
     </div>
-          <div class="col-md-8">
-            <h3>Descripción</h3>
-            <p><?php echo $descripcion; ?></p>
-          </div>
-        </div>
-      </div>
-    </section>
+</section>
+
 
     <!-- ======= Publicidad Section ======= -->
 <section id="testimonials" class="testimonials section-bg">
