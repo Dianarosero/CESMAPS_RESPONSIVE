@@ -3,7 +3,6 @@
 include("../../../base de datos/con_db.php");
 include("../../../base de datos/sesiones.php");
 
-
 // Obtener los valores seleccionados del formulario
 $idPuntoPartida = $_POST['punto_partida'];
 $idPuntoDestino = $_POST['punto_destino'];
@@ -30,7 +29,6 @@ if ($resultadoPuntoPartida && $resultadoPuntoDestino) {
 mysqli_free_result($resultadoPuntoPartida);
 mysqli_free_result($resultadoPuntoDestino);
 
-
 // Consulta SQL para obtener la información de la ruta
 $sql = "SELECT * FROM rutas WHERE id_punto_ini = $idPuntoPartida AND id_punto_fin = $idPuntoDestino";
 $result = $conex->query($sql);
@@ -41,7 +39,7 @@ if ($result->num_rows > 0) {
     $row = $result->fetch_assoc();
     $imagen = $row['ruta_foto'];
     $descripcion = $row['descripcion'];
-    $tiempo = $row ['timpo_estimado'];
+    $tiempo = $row['timpo_estimado'];
 } else {
     // No se encontraron resultados, mostrar mensaje de error
     echo "<script>alert('No se ha encontrado una ruta entre los puntos seleccionados.');</script>";
@@ -57,63 +55,71 @@ if ($result->num_rows > 0) {
 <head>
 
 <style>
-        .btn-back,
-        .logout-button {
-            background: none;
-            border: none;
-            padding: 0;
-        }
+    .btn-back,
+    .logout-button {
+        background: none;
+        border: none;
+        padding: 0;
+    }
 
-        .btn-back img,
-        .logout-button img {
-            display: block;
-            width: 100px;
-            height: auto;
-        }
+    .btn-back img,
+    .logout-button img {
+        display: block;
+        width: 100px;
+        height: auto;
+    }
 
-        .fixed-buttons {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 999;
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    </style>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Visualizar Ruta</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-  <!-- Favicons -->
-  <link href="../front/recorrido/img/flavicon-01.png" rel="icon">
-  <link href="../front/recorrido/img/apple-touch-icon.png" rel="apple-touch-icon">
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
-  <!-- Vendor CSS Files -->
-  <link href="../front/recorrido/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="../front/recorrido/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="../front/recorrido/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="../front/recorrido/vendor/aos/aos.css" rel="stylesheet">
-  <link href="../front/recorrido/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="../front/recorrido/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-  <!-- Template Main CSS File -->
-  <link href="../front/recorrido/css/style_recorrido.css" rel="stylesheet">
-  <!-- Bootstrap CSS -->
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    .fixed-buttons {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 999;
+        padding: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
 
-  <!-- =======================================================
-  * Template Name: UpConstruction
-  * Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
-  * Updated: Mar 17 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+    .text-area-margin {
+        margin-top: 20px;
+    }
+
+    .audio-player-margin {
+        margin-top: -20px; /* Ajusta este valor según sea necesario */
+    }
+</style>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Visualizar Ruta</title>
+<meta content="" name="description">
+<meta content="" name="keywords">
+<!-- Favicons -->
+<link href="../front/recorrido/img/flavicon-01.png" rel="icon">
+<link href="../front/recorrido/img/apple-touch-icon.png" rel="apple-touch-icon">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="../front/recorrido/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="../front/recorrido/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+<link href="../front/recorrido/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="../front/recorrido/vendor/aos/aos.css" rel="stylesheet">
+<link href="../front/recorrido/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+<link href="../front/recorrido/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="../front/recorrido/css/style_recorrido.css" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- =======================================================
+* Template Name: UpConstruction
+* Template URL: https://bootstrapmade.com/upconstruction-bootstrap-construction-website-template/
+* Updated: Mar 17 2024 with Bootstrap v5.3.3
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+======================================================== -->
 </head>
 <body>
   <!-- ======= Header ======= -->
@@ -162,8 +168,8 @@ if ($result->num_rows > 0) {
             <div class="col-md-6">
                 <img name="foto" src="<?php echo $imagen; ?>" class="img-fluid" alt="Imagen de la ruta" style="margin-top: -38px;">
             </div>
-            <div class="col-md-6">
-                <div class="container mt-5">
+            <div class="col-md-6 text-area-margin">
+                <div class="container mt-5 audio-player-margin">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Reproductor de Audio</h5>
@@ -174,7 +180,7 @@ if ($result->num_rows > 0) {
                         </div>
                     </div>
                 </div>
-                <div class="col-md-8">
+                <div class="col-md-12 mt-5">
                     <h3>Descripción</h3>
                     <p><?php echo $descripcion; ?></p>
                 </div>
@@ -182,7 +188,6 @@ if ($result->num_rows > 0) {
         </div>
     </div>
 </section>
-
 
     <!-- ======= Publicidad Section ======= -->
 <section id="testimonials" class="testimonials section-bg">
@@ -258,3 +263,4 @@ if ($result->num_rows > 0) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
