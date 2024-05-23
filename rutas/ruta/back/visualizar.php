@@ -38,6 +38,7 @@ if ($result->num_rows > 0) {
     // Obtener los datos de la ruta
     $row = $result->fetch_assoc();
     $imagen = $row['ruta_foto'];
+    $audio = $row['ruta_audio'];
     $descripcion = $row['descripcion'];
     $tiempo = $row['timpo_estimado'];
 } else {
@@ -169,12 +170,47 @@ if ($result->num_rows > 0) {
                 <img name="foto" src="<?php echo $imagen; ?>" class="img-fluid" alt="Imagen de la ruta" style="margin-top: -38px;">
             </div>
             <div class="col-md-6 text-area-margin">
+                <!-- Banner -->
+                <div class="banner-container">
+                <?php
+                // PHP code to fetch and display floating banner
+                include("../../../base de datos/con_db.php");
+                // Verifica si la conexión fue exitosa
+                if ($conex->connect_error) {
+                  die("Error de conexión: " . $conex->connect_error);
+                }
+                // Consulta para obtener una publicación aleatoria que sea una imagen o gif
+                $sql1 = "SELECT * FROM publicaciones WHERE estado = '0' AND img_interactiva IS NOT NULL ORDER BY RAND() LIMIT 1";
+                $result1 = $conex->query($sql1);
+                // Verifica si se encontraron resultados
+                if ($result1->num_rows > 0) {
+                  while ($row = $result1->fetch_assoc()) {
+                    $ruta_img = '../../../publicaciones/back/' . $row['img_interactiva'];
+                    echo '<a href="../../../publicaciones/back/publi.php?';
+
+                    // Itera sobre el array $row
+                    foreach ($row as $key => $value) {
+                        // Concatena cada par clave-valor en la URL
+                        echo urlencode($key) . '=' . urlencode($value) . '&';
+                    }
+
+                    // Cierra el enlace
+                    echo '">';
+                    echo '<img id="responsive-banner" src="' . $ruta_img . '" alt="Banner Image">';
+                    echo '</a>';
+                    echo '<br><br>';
+                  }
+                } else {
+                  echo "No se encontraron imágenes.";
+                }
+                ?>
+                </div>
                 <div class="container mt-5 audio-player-margin">
                     <div class="card">
                         <div class="card-body">
                             <h5 class="card-title">Reproductor de Audio</h5>
                             <audio controls class="w-100">
-                                <source src="synthesis.wav" type="audio/wav">
+                                <source src="<?php echo $audio; ?>" type="audio/wav">
                                 Tu navegador no soporta el elemento de audio.
                             </audio>
                         </div>
@@ -263,4 +299,3 @@ if ($result->num_rows > 0) {
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
