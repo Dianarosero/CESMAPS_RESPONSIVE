@@ -72,13 +72,6 @@ include('../../base de datos/sesiones.php');
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>';
     }else{
-      echo '<a href="https://wa.me/3156268049" target="_blank" class="top-bar">
-      <div class="scrolling-text-container">
-        <div class="scrolling-text">
-          <span>Si deseas realizar una publicación, pulsa aquí</span>
-        </div>
-      </div>
-    </a>';
         echo '<a href="../../cuentas/back/bienvenida/back/welcomeUser.php" class="btn-back">
         <img src="../front/listar/img/volver-01-01-01.png" alt="Volver">
       </a>';

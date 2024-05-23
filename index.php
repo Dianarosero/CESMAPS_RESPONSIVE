@@ -66,7 +66,7 @@
   <a href="https://wa.me/3156268049" target="_blank" class="top-bar">
     <div class="scrolling-text-container">
       <div class="scrolling-text">
-        <span>Si deseas realizar una publicación, pulsa aquí</span>
+        <span>Si deseas información sobre como realizar una publicación con nosotros, pulsa aquí</span>
       </div>
     </div>
   </a>
